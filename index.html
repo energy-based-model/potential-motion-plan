@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3593LNYVK9"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3593LNYVK9');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="stylesheet" href="bootstrap-grid.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="load-mathjax.js" async></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://nanliu.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">
+            Composable Diffusion
+          </a>
+          <a class="navbar-item" href="https://energy-based-model.github.io/comet/">
+            COMET
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models</h1>
+            <h2 class="title is-size-2">ICCV 2023</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://nanliu.io/">Nan Liu</a><sup>*1</sup>,</span>
+            <span class="author-block">
+              <a href="https://yilundu.github.io/">Yilun Du</a><sup>*2</sup>,</span>
+            <span class="author-block">
+              <a href="https://people.csail.mit.edu/lishuang/">Shuang Li</a><sup>*2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://web.mit.edu/cocosci/josh.html">Joshua B. Tenenbaum</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://groups.csail.mit.edu/vision/torralbalab/">Antonio Torralba</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>UIUC,</span>
+            <span class="author-block"><sup>2</sup>MIT</span>
+            <p>(* indicates equal contribution)</p>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2306.05357.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2306.05357"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/nanlliu/Unsupervised-Compositional-Concepts-Discovery"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="materials/unsupervised_discovery_teaser.m4v"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-to-image generative models have enabled high-resolution image synthesis across different domains,
+            but require users to specify the content they wish to generate.
+            In this paper, we consider the inverse problem -- given a collection of different images,
+            can we discover the generative concepts that represent each image?
+            We present an unsupervised approach to discover generative concepts from a collection of images,
+            disentangling different art styles in paintings, objects, and lighting from kitchen scenes, and
+            discovering image classes given ImageNet images. We show how such generative concepts can accurately represent the content of images,
+            be recombined and composed to generate new artistic and hybrid images and be further used as a representation for downstream classification tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            <p>We discover a set of compositional concepts given a dataset of unlabeled images. Score functions representing each concept $\{c^1, \dots, c^K\}$ are composed together to form a compositional score function that is trained to denoise images. The inferred concepts can be used to generate new images.
+          </p>
+        <video autoplay muted loop playsinline height="100%">
+          <source src="materials/demo.mp4" type="video/mp4">
+        </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Object Decomposition</h2>
+
+        <div class="content has-text-justified has-text-centered">
+          <p>
+            Our method can decompose a set of unlabeled images from into objects without using any labels.
+          </p>
+        </div>
+        <img src="materials/decomposition/imagenet_decomposition.png"
+             alt="Object Decomposition."/>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Indoor Scene Decomposition</h2>
+
+        <div class="content has-text-justified has-text-centered">
+          <p>Our method can decompose the kitchen scenes into kitchen range (i.e., stove and microwave), kitchen island, and lighting effects.
+                    <b>Note that we name each concept based on attention responses for easy visualization.</b> <u>Hover to image to visualize attention heat maps.</u>
+                </p>
+        </div>
+
+        <h3 class="title is-6 has-text-centered">Kitchen Range</h3>
+            <div class="container bg-3">
+                <div class="row">
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_1.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_1_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_2.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_2_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_3.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_3_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_4.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_4_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_5.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_5_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_6.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_6_attn.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <h3 class="title is-6 has-text-centered">Kitchen Island</h3>
+            <div class="container bg-3">
+                <div class="row">
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_1.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_1_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_2.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_2_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_3.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_3_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_4.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_4_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_5.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_5_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_6.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_6_attn.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <h3 class="title is-6 has-text-centered">Lighting Effects</h3>
+            <div class="container bg-3">
+                <div class="row">
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_1.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_1_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_2.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_2_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_3.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_3_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_4.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_4_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_5.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_5_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_6.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_6_attn.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <h3 class="title is-6 has-text-centered">Silver</h3>
+            <div class="container bg-3">
+                <div class="row">
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_1.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_1_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_2.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_2_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_3.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_3_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_4.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_4_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_5.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_5_attn.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <div class="figure">
+                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_6.png" alt="">
+                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_6_attn.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Artistic Concept Decomposition</h2>
+
+        <div class="content has-text-justified has-text-centered">
+          <p>
+            Our method can decompose paintings from artists into artistic components.
+          </p>
+        </div>
+        <img src="materials/decomposition/art_decomposition.png"
+             alt="Artistic Concept Decomposition."/>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Composing Discovered Concepts</h2>
+
+        <div class="content has-text-justified has-text-centered">
+          <p>After a set of factors is discovered from a collection of images, our method can further enable compositional generation using compositional operators from <a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">composable diffusion</a>.
+                    <b>Note that concept names (no quotation marks) are provided by us for easy understanding since we discover concepts without knowing the labels.</b>
+                </p>
+        </div>
+        <img src="materials/composition/composition.png"
+             alt="Composition."/>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+        <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Projects</h2>
+          Check out a list of our related papers on compositional generation and energy based models. A full list can be found <a href="https://energy-based-model.github.io/Energy-based-Model-MIT/">here</a>!
+          <br>
+          <br>
+        <div class="row vspace-top">
+        <div class="col-sm-3">
+            <video width="100%" playsinline="" autoplay="" preload="" muted="">
+                <source src="materials/related/recyle.m4v" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-sm-9">
+          <div class="paper-title">
+            <a href="https://energy-based-model.github.io/reduce-reuse-recycle/">Reduce, Reuse, Recycle: Compositional Generation with Energy-Based Diffusion Models and MCMC</a>
+        </div>
+        <div>
+            We propose new samplers, inspired by MCMC, to enable successful compositional generation. Further, we propose an energy-based parameterization of diffusion models which enables the use of new compositional operators and more sophisticated, Metropolis-corrected samplers.
+        </div>
+        </div>
+        </div>
+          <br>
+
+
+        <div class="row vspace-top">
+        <div class="col-sm-3">
+            <video width="100%" playsinline="" autoplay="" preload="" muted="">
+                <source src="materials/related/comet.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-sm-9">
+          <div class="paper-title">
+            <a href="https://energy-based-model.github.io/comet/">Unsupervised Learning of Compositional Energy Concepts</a>
+        </div>
+        <div>
+            We propose COMET, which discovers and represents concepts as separate energy functions, enabling us to represent both global concepts as well as objects under a unified framework. COMET discovers energy functions through recomposing the input image, which we find captures independent factors without additional supervision.
+        </div>
+        </div>
+        </div>
+          <br>
+
+
+        <div class="row vspace-top">
+        <div class="col-sm-3">
+            <video width="100%" playsinline="" autoplay="" preload="" muted="">
+                <source src="materials/related/teaser_glide.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-sm-9">
+          <div class="paper-title">
+            <a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">Compositional Visual Generation with Composable Diffusion Models</a>
+        </div>
+        <div>
+            We present a method to compose different diffusion models together, drawing on the close connection of
+            diffusion models with EBMs. We illustrate how compositional operators enable
+            the ability to composing multiple sets of objects together as well as generate images subject to
+            complex text prompts.
+        </div>
+        </div>
+        </div>
+          <br>
+
+
+        <div class="row vspace-top">
+        <div class="col-sm-3">
+            <video width="100%" playsinline="" autoplay="" preload="" muted="">
+                <source src="materials/related/clevr_teaser.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="col-sm-9">
+          <div class="paper-title">
+            <a href="https://composevisualrelations.github.io/">Learning to Compose Visual Relations</a>
+        </div>
+        <div>
+            The visual world around us can be described as a structured set of objects and their associated relations. In this work, we propose to represent each relation as an unnormalized density (an energy-based model), enabling us to compose separate relations in a factorized manner. We show that such a factorized decomposition allows the model to both generate and edit scenes that have multiple sets of relations more faithfully.
+        </div>
+        </div>
+        </div>
+          <br>
+
+        <div class="row vspace-top">
+        <div class="col-sm-3">
+            <div class="move-down">
+                <img src="materials/related/comp_cartoon.png" class="img-fluid" alt="comp_carton" style="width:100%">
+            </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="paper-title">
+            <a href="https://energy-based-model.github.io/compositional-generation-inference/">Compositional Visual Generation with Energy Based Models</a>
+        </div>
+        <div>
+            We present a set of compositional operators that enable EBMs to exhibit <b>zero-shot compositional</b> visual generation, enabling us to compose visual concepts
+            (through operators of conjunction, disjunction, or negation) together in a zero-shot manner.
+            Our approach enables us to generate faces given a  description
+            ((Smiling AND Female) OR (NOT Smiling AND Male)) or to combine several different objects together.
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+        </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content column is-full-width ">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@InProceedings{Liu_2023_ICCV,
+    author    = {Liu, Nan and Du, Yilun and Li, Shuang and Tenenbaum, Joshua B. and Torralba, Antonio},
+    title     = {Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {2085-2095}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/nanlliu/Unsupervised-Compositional-Concepts-Discovery" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8 has-text-centered">
+        <div class="content">
+          <p>
+            This website is forked from the
+						<a href="https://nerfies.github.io/">Nerfies</a> and
+						<a href="https://github.com/nerfies/nerfies.github.io">source code</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
