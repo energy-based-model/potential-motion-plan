@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+        content="Potential Based Diffusion Motion Planning">
+  <meta name="keywords" content="Machine Learning, ICML, Diffusion Model, Motion Planning, Compositionality, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models</title>
+  <title>Potential Based Diffusion Motion Planning</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3593LNYVK9"></script>
+<!-- TODO: -->
 <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -40,7 +41,8 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<!-- Navigation Bar -->
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -48,9 +50,10 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
+
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://nanliu.io/">
+      <a class="navbar-item" href="https://devinluo27.github.io/">
       <span class="icon">
           <i class="fas fa-home"></i>
       </span>
@@ -72,7 +75,9 @@
     </div>
 
   </div>
-</nav>
+
+
+</nav> -->
 
 
 <section class="hero">
@@ -80,34 +85,36 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models</h1>
-            <h2 class="title is-size-2">ICCV 2023</h2>
+          <h1 class="title is-1 publication-title">Potential Based Diffusion Motion Planning</h1>
+            <!-- <h2 class="title is-size-2">ICCV 2023</h2> -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://nanliu.io/">Nan Liu</a><sup>*1</sup>,</span>
+              <a href="https://devinluo27.github.io/">Yunhao Luo</a><sup>1</sup>,
+            </span>
             <span class="author-block">
-              <a href="https://yilundu.github.io/">Yilun Du</a><sup>*2</sup>,</span>
-            <span class="author-block">
-              <a href="https://people.csail.mit.edu/lishuang/">Shuang Li</a><sup>*2</sup>,
+              <a href="https://chensun.me/">Chen Sun</a><sup>1</sup>,
             </span>
             <span class="author-block">
               <a href="http://web.mit.edu/cocosci/josh.html">Joshua B. Tenenbaum</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://groups.csail.mit.edu/vision/torralbalab/">Antonio Torralba</a><sup>2</sup>
+              <a href="https://yilundu.github.io/">Yilun Du</a><sup>2</sup>
             </span>
+            
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>UIUC,</span>
+            <span class="author-block"><sup>1</sup>Brown University,</span>
             <span class="author-block"><sup>2</sup>MIT</span>
-            <p>(* indicates equal contribution)</p>
+            <!-- <p>(* indicates equal contribution)</p> -->
+            <br>ICML 2024
           </div>
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2306.05357.pdf"
+                <!-- TODO: -->
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -116,7 +123,8 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2306.05357"
+                <!-- TODO: -->
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -126,7 +134,8 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/nanlliu/Unsupervised-Compositional-Concepts-Discovery"
+                <!-- TODO: -->
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -143,33 +152,17 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="materials/unsupervised_discovery_teaser.m4v"
-                type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Text-to-image generative models have enabled high-resolution image synthesis across different domains,
-            but require users to specify the content they wish to generate.
-            In this paper, we consider the inverse problem -- given a collection of different images,
-            can we discover the generative concepts that represent each image?
-            We present an unsupervised approach to discover generative concepts from a collection of images,
-            disentangling different art styles in paintings, objects, and lighting from kitchen scenes, and
-            discovering image classes given ImageNet images. We show how such generative concepts can accurately represent the content of images,
-            be recombined and composed to generate new artistic and hybrid images and be further used as a representation for downstream classification tasks.
+
+            Effective motion planning in high dimensional spaces is a long-standing open problem in robotics. One class of traditional motion planning algorithms corresponds to potential-based motion planning. An advantage of potential based motion planning is composability -- different motion constraints can easily combined by adding corresponding potentials. However, constructing motion paths from potentials requires solving a global optimization across configuration space potential landscape,  which is often prone to local minima. We propose a new approach towards learning potential based motion planning, where we train a neural network to capture and learn an easily optimizable potentials over motion planning trajectories. We illustrate the effectiveness of such approach, significantly outperforming both classical and recent learned motion planning approaches and avoiding issues with local minima. We further illustrate its inherent composability, enabling us to generalize to a multitude of different motion constraints. 
+            
           </p>
         </div>
       </div>
@@ -177,25 +170,57 @@
   </div>
 </section>
 
-<section class="section">
+
+<section class="hero teaser">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="materials/unsupervised_discovery_teaser.m4v"
+                type="video/mp4">
+      </video> -->
+      <center>
+      <figure>
+        <a>
+            <img width="70%" src="materials/0-teaser-icml-website.png">
+        </a>
+        <p class="caption">
+            <b>Illustrative Example of Composing Diffusion Energy Potentials.</b>
+            Our approach learns different potential functions over motion planning trajectories $q_{1:N}$ (orange dashed lines). Different potentials can be combined and optimized to construct new motion plans that avoid obstacles encoded in both potential functions.
+
+        </p>
+    </figure>
+    </center>
+
+    </div>
+  </div>
+</section>
+
+
+ <!-- <p>
+             We discover a set of compositional concepts given a dataset of unlabeled images. Score functions representing each concept $\{c^1, \dots, c^K\}$ are composed together to form a compositional score function that is trained to denoise images. The inferred concepts can be used to generate new images.
+</p> -->
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
-          <p>
-            <p>We discover a set of compositional concepts given a dataset of unlabeled images. Score functions representing each concept $\{c^1, \dots, c^K\}$ are composed together to form a compositional score function that is trained to denoise images. The inferred concepts can be used to generate new images.
-          </p>
-        <video autoplay muted loop playsinline height="100%">
-          <source src="materials/demo.mp4" type="video/mp4">
-        </video>
+         
+
+    <p>
+      We next discuss how to learn potentials for potential motion planning that enable us to effectively optimize samples. Given a motion plan $q_{1:T}$ from start state $q_{\text{st}}$ to end state $q_{\text{e}}$ and a characterization of the configuration space $C$ ($\textit{i.e.}$ the set of obstacles in the environment), we propose to learn a trajectory-level potential function $U_\theta$ so that
+    </p>          
+    \begin{equation}
+    q_{1:T}^* = \text{arg\,min}_{q_{1:T}} U_\theta(q_{1:T}, q_{\text{st}}, q_{\text{e}}, C),
+    \label{eqn:potential_traj}
+    \end{equation} 
+
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
   </div>
-</section>
+</section> -->
 
 
 <section class="section">
@@ -204,192 +229,110 @@
     <!-- Animation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Object Decomposition</h2>
+        <h2 class="title is-4">Potential Diffusion Process</h2>
 
-        <div class="content has-text-justified has-text-centered">
+        <!-- <div class="content has-text-justified has-text-centered"> -->
+          <!-- <p> -->
+            <!-- Our method can decompose a set of unlabeled images from into objects without using any labels. -->
+          <!-- </p> -->
+        <!-- </div> -->
+
+        <!-- <img src="materials/decomposition/imagenet_decomposition.png" -->
+             <!-- alt="Object Decomposition."/> -->
+          <div class="video-container text-centered">
+          
+            <!-- <center> -->
+            <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+                <source src="materials/rm2d-per-step/luotest_env6.mp4" type="video/mp4">
+            </video>
+
+            <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+              <source src="materials/rm2d-per-step/luotest_env10.mp4" type="video/mp4">
+            </video>
+
+            <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+              <source src="materials/rm2d-per-step/luotest_env17.mp4" type="video/mp4">
+            </video>
+          <!-- </center> -->
           <p>
-            Our method can decompose a set of unlabeled images from into objects without using any labels.
+            <!-- \textbf{Trajectory Denoising Process.}  -->
+            Motion trajectories are randomly initialized from Gaussian in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible trajectory can be obtained at timestep $S = 0$.
+            <!-- \eqref{eqn:diffusion_opt} -->
           </p>
-        </div>
-        <img src="materials/decomposition/imagenet_decomposition.png"
-             alt="Object Decomposition."/>
-        <br/>
+
+          </div>
+        
+        
+             <br/>
       </div>
     </div>
   </div>
 </section>
 
+
+
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Indoor Scene Decomposition</h2>
+        <h2 class="title is-4">Motion Plans on Concave Obstacles</h2>
 
-        <div class="content has-text-justified has-text-centered">
+        <!-- <div class="content has-text-justified has-text-centered">
           <p>Our method can decompose the kitchen scenes into kitchen range (i.e., stove and microwave), kitchen island, and lighting effects.
                     <b>Note that we name each concept based on attention responses for easy visualization.</b> <u>Hover to image to visualize attention heat maps.</u>
                 </p>
-        </div>
+        </div> -->
 
-        <h3 class="title is-6 has-text-centered">Kitchen Range</h3>
+        <!-- <h3 class="title is-6 has-text-centered">Silver</h3> -->
+            <!-- <div class="container bg-3"> -->
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-sm-2 text-center"> -->
+                        <!-- <div class="figure"> -->
+                            <!-- <img class="Sirv image-main img-fluid" src="materials/21-concave_compare-v4-icml.png" alt=""> -->
+                        <!-- </div> -->
+
+                  <!-- <div style="height: 500px"> -->
+                    <p>
+                      <!-- <b>Qualitative Performance on Environments with Concave Obstacles.</b> -->
+                      The green star indicates the start pose and the red star indicates the goal pose.
+                      RMP tends to stuck in local minima and fails to reach the goals; 
+                      RRT* is slow in speed and may reach the planning time limit in some difficult problems; 
+                      trajectories by MPNet may occasionally go through obstacles in the environments;
+                      our method is able to generate smooth and low-cost trajectories without collision while being up to 10 times faster than BIT*.
+                    </p>
+                    <br/>
+                    <div class="centered-container text-centered">
+                    <!-- <center> -->
+                      <!-- <div width="100%" class="figure centered-container" style="height: 600px"> -->
+                      <!-- <div width="100%" class="centered-container"> -->
+                        <!-- style="width:200%" -->
+                          <!-- width="100%"  -->
+                          <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" class="scaled-image-200"> -->
+                          <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" style="width: 10000px" > -->
+                          <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" style="transform: scale(2.1); transform-origin: top center;" > -->
+                          <img src="materials/21-concave_compare-v4-icml.png" alt="" width="70%">
+
+                          <!-- <div class="background-image" > </div> -->
+                      <!-- </div> -->
+                    <!-- </center> -->
+                    <!-- <br/> -->
+                  </div>
+                  <!-- <div class="caption"> -->
+                  <!-- </div> -->
+
+                    
+                  <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+
+        
+        <!-- <h3 class="title is-6 has-text-centered">Silver</h3>
             <div class="container bg-3">
                 <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_1.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_1_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_2.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_2_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_3.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_3_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_4.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_4_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_5.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_5_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_6.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t1_6_attn.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-        <h3 class="title is-6 has-text-centered">Kitchen Island</h3>
-            <div class="container bg-3">
-                <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_1.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_1_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_2.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_2_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_3.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_3_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_4.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_4_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_5.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_5_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_6.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t4_6_attn.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-        <h3 class="title is-6 has-text-centered">Lighting Effects</h3>
-            <div class="container bg-3">
-                <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_1.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_1_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_2.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_2_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_3.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_3_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_4.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_4_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_5.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_5_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_6.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t3_6_attn.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-        <h3 class="title is-6 has-text-centered">Silver</h3>
-            <div class="container bg-3">
-                <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_1.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_1_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_2.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_2_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_3.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_3_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_4.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_4_attn.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_5.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_5_attn.png" alt="">
-                        </div>
-                    </div>
                     <div class="col-sm-2 text-center">
                         <div class="figure">
                             <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_6.png" alt="">
@@ -397,7 +340,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
       </div>
     </div>
   </div>
@@ -407,34 +350,164 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Artistic Concept Decomposition</h2>
+        <h2 class="title is-4">Motion Plans on KUKA</h2>
 
         <div class="content has-text-justified has-text-centered">
           <p>
-            Our method can decompose paintings from artists into artistic components.
+            Motion Plans by our diffusion potential planner and MπNet.
+            The large green/pink ball indicates the start/goal state. Our method in the left column generates smooth and near-optimal trajectories, the trajectories of M$\pi$Net might choose a longer route, get stuck in some local regions, or fail to pass through the narrow passage and keep hovering near the start state.
+
           </p>
         </div>
-        <img src="materials/decomposition/art_decomposition.png"
-             alt="Artistic Concept Decomposition."/>
+        <!-- <img src="materials/0-teaser-icml.png" -->
+             <!-- alt="Artistic Concept Decomposition."/> -->
+          
+              <!-- <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+                  <source src="materials/kuka7d/pdb-1-600.gif" type="video/mp4">
+              </video> -->
+
+            <!-- <figure-luo> -->
+              <!-- <img src="materials/kuka7d/pbd-1-600.gif" alt="" width="30%"> -->
+              <!-- <div class="caption">Caption for Image 1</div> -->
+
+              <!-- <figcaption>asdf</figcaption> -->
+            <!-- </figure-luo> -->
+
+              
+            <!-- <figure-luo> -->
+
+              <!-- <img src="materials/kuka7d/mpo-1-600.gif" alt="" width="30%"> -->
+
+            <!-- </figure-luo> -->
+
+        <div class="container bg-3">
+          <div class="row">
+        
+            <div class="video-container text-centered">
+
+              <div class="col-lg-4 centered-caption">
+                <figure>
+                  <img src="materials/kuka7d/pbd-1-600.gif" alt="">
+                  <!-- <figcaption class="text-centered"> asd </figcaption> -->
+                  <!-- <center-caption class="has-text-centered"> asd </center-caption> -->
+                  <!-- <center-caption class="centered"> asd </center-caption> -->
+                  <!-- <center-caption> asd </center-caption> -->
+                  <!-- <div class="centered-caption">Ours</div> -->
+                  Ours
+                  <!-- <div class="text-centered">asd</div> -->
+                </figure>
+
+                <!-- <div class="caption">Ours</div> -->
+                <!-- <caption>asd</caption> -->
+              </div>
+
+              <!-- <div class="image-container"> -->
+              <div class="col-lg-4 centered-caption">
+                <img src="materials/kuka7d/mpo-1-600.gif" alt="">
+                <!-- <div class="caption centered-caption"> -->
+                  MπNet
+                <!-- </div> -->
+              </div>
+            
+            </div>
+
+          </div>
+        </div>
+
+
+
+
         <br/>
+
+        <div class="container bg-3">
+          <div class="row">
+
+            <div class="video-container">
+              <div class="col-md-4 centered-caption">
+                <figure>
+                  <img src="materials/kuka7d/pbd-2-600.gif" alt="">
+                  Ours
+                </figure>
+              </div>
+
+              <div class="col-lg-4 centered-caption">
+                <img src="materials/kuka7d/mpo-2-600.gif" alt="">
+                  MπNet
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        
       </div>
     </div>
   </div>
 </section>
+
+
 
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Composing Discovered Concepts</h2>
+        <!-- <h2 class="title is-4">Compositional Generalization over Increasing Obstacles</h2> -->
+        <h2 class="title is-4">Generalization via Composing Potentials</h2>
 
         <div class="content has-text-justified has-text-centered">
-          <p>After a set of factors is discovered from a collection of images, our method can further enable compositional generation using compositional operators from <a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">composable diffusion</a>.
-                    <b>Note that concept names (no quotation marks) are provided by us for easy understanding since we discover concepts without knowing the labels.</b>
-                </p>
+
+          <p>
+           Our method can generalize to more difficult out-of-distribution environments by sampling from the composite diffusion potential function. We demonstrate results where we compose potentials of the same obstacle type, of different obstacle types, and of static and dynamic obstacles.
+          </p>
+
+
         </div>
-        <img src="materials/composition/composition.png"
-             alt="Composition."/>
+        <!-- <img src="materials/40-comp_rm2d-3.png" width="75%" alt="Composition."/> -->
+
+        <div class="centered-caption"  width="75%">
+          <figure>
+            <img width="75%" src="materials/40-comp_rm2d-3.png" alt="">
+            <br/>
+            <div class="left-caption">
+              <b>Compositional Generalization over Increasing Obstacles.</b>
+              The green/pink star indicates the start/goal state. Our planner is
+              trained with a dataset with only 6 obstacles and can generalize to scenarios with more obstacles by directly composing potentials in test
+              time (without any re-training). 
+              Though trained on environments with fewer obstacles, the generated trajectories can still reach the goals with near optimal paths and various morphology shapes through composing potentials.
+            </div>
+          </figure>
+        </div>
+        <br/>
+
+        <div class="centered-caption">
+          <figure>
+            <img width="51%" src="materials/43-comp_rm2d-diff-v2.png" alt="">
+            <br/>
+
+            <div class="left-caption">
+              <b>Compositional Generalization over Different Obstacles.</b>
+              Two separately trained models are composed: a model <i>only</i> trained on large blocks (blue) of size $1.4 \times 1.4$ and a model <i>only</i> trained on smaller blocks (orange) $1 \times 1$. By composing two models, our planner can generalize to more complex scenarios with various obstacles in test time (without any re-training). The generated trajectories demonstrate various morphology and reach the goal with smooth and short paths. 
+            </div>
+          </figure>
+        </div>
+        <br/>
+
+
+        <div class="centered-caption">
+          <figure>
+            <img width="51%" src="materials/45-comp_rm2d-diff-concave.png" alt="">
+            <br/>
+            <div class="left-caption">
+              <b>Compositional Generalization over Square and Concave Obstacles.</b> 
+              Two separately trained models are composed: a model <i>only</i> trained on square blocks (blue) of size $1.0 \times 1.0$ and a model <i>only</i> trained on concave blocks (orange). 
+              The composite planner is well aware of the geometrical difference between the square and concave obstacles and is able to propose successful and near-optimal motion plans accordingly. 
+            </div>
+          </figure>
+        </div>
+
+        
         <br/>
       </div>
     </div>
@@ -442,6 +515,26 @@
 </section>
 
 
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content column is-full-width ">
+    <!-- TODO: -->
+    <h2 class="title is-4">BibTeX</h2>
+    <pre><code> Coming Soon.
+      <!-- @InProceedings{Liu_2023_ICCV,
+    author    = {Liu, Nan and Du, Yilun and Li, Shuang and Tenenbaum, Joshua B. and Torralba, Antonio},
+    title     = {Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {2085-2095}
+} -->
+</code></pre>
+  </div>
+</section>
+
+
+<!-- TODO: bring back -->
+<!-- 
 <section class="section">
         <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -508,21 +601,21 @@
 
 
         <div class="row vspace-top">
-        <div class="col-sm-3">
-            <video width="100%" playsinline="" autoplay="" preload="" muted="">
-                <source src="materials/related/clevr_teaser.mp4" type="video/mp4">
-            </video>
+          <div class="col-sm-3">
+              <video width="100%" playsinline="" autoplay="" preload="" muted="">
+                  <source src="materials/related/clevr_teaser.mp4" type="video/mp4">
+              </video>
+          </div>
+          <div class="col-sm-9">
+            <div class="paper-title">
+              <a href="https://composevisualrelations.github.io/">Learning to Compose Visual Relations</a>
+            </div>
+            <div>
+                The visual world around us can be described as a structured set of objects and their associated relations. In this work, we propose to represent each relation as an unnormalized density (an energy-based model), enabling us to compose separate relations in a factorized manner. We show that such a factorized decomposition allows the model to both generate and edit scenes that have multiple sets of relations more faithfully.
+            </div>
+          </div>
         </div>
-        <div class="col-sm-9">
-          <div class="paper-title">
-            <a href="https://composevisualrelations.github.io/">Learning to Compose Visual Relations</a>
-        </div>
-        <div>
-            The visual world around us can be described as a structured set of objects and their associated relations. In this work, we propose to represent each relation as an unnormalized density (an energy-based model), enabling us to compose separate relations in a factorized manner. We show that such a factorized decomposition allows the model to both generate and edit scenes that have multiple sets of relations more faithfully.
-        </div>
-        </div>
-        </div>
-          <br>
+        <br>
 
         <div class="row vspace-top">
         <div class="col-sm-3">
@@ -545,31 +638,20 @@
       </div>
     </div>
         </div>
-</section>
+</section> -->
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content column is-full-width ">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@InProceedings{Liu_2023_ICCV,
-    author    = {Liu, Nan and Du, Yilun and Li, Shuang and Tenenbaum, Joshua B. and Torralba, Antonio},
-    title     = {Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models},
-    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-    month     = {October},
-    year      = {2023},
-    pages     = {2085-2095}
-}</code></pre>
-  </div>
-</section>
+
 
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
+      <!-- TODO: -->
       <a class="icon-link"
          href="">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/nanlliu/Unsupervised-Compositional-Concepts-Discovery" class="external-link" disabled>
+      <a class="icon-link" href="" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>

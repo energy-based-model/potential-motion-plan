@@ -1,0 +1,884 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<script src="bootstrap.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<!---
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+--->
+<script src="load-mathjax.js" async></script>
+
+
+<style type="text/css">
+body {
+    font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 980px){
+    body {
+        width: 980px;
+    }
+}
+
+
+h1 {
+    font-weight:300;
+    line-height: 1.15em;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+a:link,a:visited {
+    color: #5364cc;
+    text-decoration: none;
+}
+a:hover {
+    color: #208799;
+}
+h1 {
+    text-align: center;
+}
+h2,h3 {
+    text-align: left;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 500;
+}
+h2 {
+    font-weight: 400;
+    margin: 16px 0px 4px 0px;
+}
+h3 {
+    font-weight: 600;
+    margin: 16px 0px 4px 0px;
+}
+
+.paper-title {
+    padding: 1px 0px 1px 0px;
+}
+section {
+    margin: 32px 0px 32px 0px;
+    text-align: justify;
+    clear: both;
+}
+.col-5 {
+     width: 20%;
+     float: left;
+}
+
+.move-down {
+    margin-top:1.2cm;
+}
+
+.col-4 {
+     width: 25%;
+     float: left;
+}
+.col-3 {
+     width: 33%;
+     float: left;
+}
+.col-2 {
+     width: 50%;
+     float: left;
+}
+.col-1 {
+     width: 100%;
+     float: left;
+}
+
+.author-row, .affil-row {
+    font-size: 26px;
+}
+
+.author-row-new { 
+    text-align: center; 
+}
+
+.author-row-new a {
+    display: inline-block;
+    font-size: 20px;
+    padding: 4px;
+}
+
+.author-row-new sup {
+    color: #313436;
+    font-size: 12px;
+}
+
+.affiliations-new {
+    font-size: 18px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: 16px 0px 16px 0px;
+}
+.authors {
+    font-size: 26px;
+}
+.affiliatons {
+    font-size: 18px;
+}
+.affil-row {
+    margin-top: 18px;
+}
+.teaser {
+    max-width: 100%;
+}
+.text-center {
+    text-align: center;  
+}
+.screenshot {
+    width: 256px;
+    border: 1px solid #ddd;
+}
+.screenshot-el {
+    margin-bottom: 16px;
+}
+hr {
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid #ddd;
+    margin: 0;
+}
+.material-icons {
+    vertical-align: -6px;
+}
+p {
+    line-height: 1.25em;
+}
+.caption {
+    font-size: 16px;
+    color: #666;
+    margin-top: 4px;
+    margin-bottom: 10px;
+	text-align: left;
+}
+
+p {
+  margin: 5px 0; /* 10px spacing on top and bottom, 0px on left and right */
+}
+
+
+video {
+    display: block;
+    margin: auto;
+}
+
+
+figure {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#bibtex pre {
+    font-size: 14px;
+    background-color: #eee;
+    padding: 16px;
+}
+.blue {
+    color: #2c82c9;
+    font-weight: bold;
+}
+.orange {
+    color: #d35400;
+    font-weight: bold;
+}
+.flex-row {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.paper-btn-coming-soon {
+    position: relative; 
+    top: 0;
+    left: 0;
+}
+
+.coming-soon {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+
+.center {
+  margin-left: 10.0%;
+  margin-right: 10.0%;
+}
+
+.paper-btn {
+  position: relative;
+  text-align: center;
+
+  display: inline-block;
+  margin: 8px;
+  padding: 8px 8px;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  
+  background-color: #5364cc;
+  color: white !important;
+  font-size: 20px;
+  width: 100px;
+  font-weight: 600;
+}
+.paper-btn-parent {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0px;
+}
+
+.paper-btn:hover {
+    opacity: 0.85;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.venue {
+    font-size: 23px;
+}
+
+.topnav {
+    background-color: #EEEEEE;
+    overflow: hidden;
+}
+
+.topnav div {
+    max-width: 1070px;
+    margin: 0 auto;
+}
+
+.topnav a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.topnav img {
+    padding: 2px 0px;
+    width: 100%;
+    margin: 0.2em 0px 0.3em 0px;
+    vertical-align: middle;
+}
+
+pre {
+    font-size: 0.9em;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 3px;
+    background-color: rgb(235, 235, 235);
+    overflow-x: auto;
+}
+
+.download-thumb {
+    display: flex;
+}
+
+
+@media only screen and (max-width: 620px) {
+    .download-thumb {
+        display: none;
+    }
+}
+
+.paper-stuff {
+    width: 50%;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 620px) {
+    .paper-stuff {
+        width: 100%;
+    }
+}
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  text-align: center;
+  float: left;
+  width: 16.666%;
+  padding: 5px;
+}
+.column3 {
+  text-align: center;
+  float: left;
+  width: 33.333%;
+  padding: 5px;
+}
+.column4 {
+  text-align: center;
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+.column5 {
+  text-align: center;
+  float: left;
+  width: 20%;
+  padding: 5px;
+}
+.column10 {
+  text-align: center;
+  float: left;
+  width: 10%;
+  padding: 5px;
+}
+.border-right {
+    border-right: 1px solid black;
+}
+.border-bottom{
+    border-bottom: 1px solid black;
+}
+
+
+.row-center {
+    margin: 16px 0px 16px 0px;
+    text-align: center;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.figure-img {
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+
+
+
+
+
+
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+
+
+
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+</style>
+<link rel="stylesheet" href="bootstrap-grid.css">
+
+<script type="text/javascript" src="../js/hidebib.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
+    <head>
+        <title>Potential Based Diffusion Motion Planning</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:description" content="Potential Based Diffusion Motion Planning"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+        <!-- <meta name="twitter:card" content="summary_large_image"> -->
+        <!-- <meta name="twitter:creator" content="@du_yilun"> -->
+        <meta name="twitter:title" content="Potential Based Diffusion Motion Planning">
+        <meta name="twitter:description" content="">
+        <meta name="twitter:image" content="">
+    </head>
+
+ <body>
+
+
+<div class="container">
+    <div class="paper-title">
+    <h1> 
+        Potential Based Diffusion Motion Planning
+    </div>
+
+    <div id="authors">
+        <center>
+            <div class="author-row-new">
+                <a href="https://devinluo27.github.io/">Yunhao Luo<sup>1</sup></a>,
+                <a href="https://chensun.me/">Chen Sun<sup>1</sup></a>,
+                <a href="https://web.mit.edu/cocosci/josh.html">Joshua B. Tenenbaum<sup>2</sup></a>,
+                <a href="https://yilundu.github.io/">Yilun Du<sup>2</sup></a>
+            </div>
+        </center>
+        <center>
+        <div class="affiliations">
+            <span><sup>1</sup> Brown University</span>
+            <span><sup>2</sup> MIT</span>
+        </div>
+
+        <div class="affil-row">
+            <div class="venue text-center"><b>ICML 2024</b></div>
+        </div>
+
+        </center>
+
+        <div style="clear: both">
+            <!-- TODO: -->
+            <div class="paper-btn-parent">
+            <a class="paper-btn" href="">
+                <span class="material-icons"> description </span> 
+                 Paper
+            </a>
+            <a class="paper-btn" href="">
+                <span class="material-icons"> code </span>
+                Code
+            </a>
+<!--            <a class="paper-btn" href="https://colab.research.google.com/drive/1jvlzWMc6oo-TH1fYMl6hsOYfrcQj2rEs?usp=sharing">-->
+<!--                <span class="material-icons"> code </span> -->
+<!--                 Colab-->
+<!--            </a>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- <section id="teaser-image">
+        <center>
+            <figure>
+                <video class="centered" width="100%" autoplay loop muted playsinline class="video-background " >
+                    <source src="materials/teaser_good_trimmed.mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </figure>
+
+        </center>
+    </section> -->
+
+    
+    <section id="abstract"/>
+        <hr>
+        <h2>Abstract</h2>
+        <div class="flex-row">
+            <p>
+                Effective motion planning in high dimensional spaces is a long-standing open problem in robotics. One class of traditional motion planning algorithms corresponds to potential-based motion planning. An advantage of potential based motion planning is composability -- different motion constraints can easily combined by adding corresponding potentials. However, constructing motion paths from potentials requires solving a global optimization across configuration space potential landscape,  which is often prone to local minima. We propose a new approach towards learning potential based motion planning, where we train a neural network to capture and learn an easily optimizable potentials over motion planning trajectories. We illustrate the effectiveness of such approach, significantly outperforming both classical and recent learned motion planning approaches and avoiding issues with local minima. We further illustrate its inherent composability, enabling us to generalize to a multitude of different motion constraints. 
+            
+            </p>
+        </div>
+    </section>
+
+
+    <section id="teaser-image">
+        <center>
+            <figure>
+                <a>
+                    <img width="70%" src="materials/0-teaser-icml-website.png">
+                </a>
+                <p class="caption">
+                    <b>Illustrative Example of Composing Diffusion Energy Potentials.</b>
+                    Our approach learns different potential functions over motion planning trajectories (orange dashed lines) $q_{1:N}$. Different potentials can be combined and optimized to construct new motion plans that avoid obstacles encoded in both potential functions.
+
+                </p>
+            </figure>
+
+        </center>
+    </section>
+
+
+
+
+    <section id="method"/>
+        <hr>
+        <h2>Method</h2>
+
+
+        <div class="flex-row">
+            <p> 
+                <b>Neural Interaction Inference with Potentials.</b>
+                We present Neural Interaction Inference with Potentials (NIIP), our  unsupervised approach to decompose a trajectory  $ \mathbf{x}(1...T)_i  $, consisting of  $ N  $ separate nodes at each timestep,  into a set of separate EBM  $ E_\theta^j(\mathbf{x})  $ potentials.  NIIP is composed by two steps: <b>(i)</b> an encoder for obtaining a set of potentials and <b>(ii)</b> a sampling process which optimizes for a predicted trajectory, minimizing the inferred potentials. Energy functions in NIIP are trained using autoencoding.
+                </p>
+                <p>
+                <b>Relational Potentials.</b>
+                To effectively parameterize different potentials for separate interactions, we learn a latent conditioned energy function  $ E_\theta(\mathbf{x}, \mathbf{z}) : \mathbb{R}^{T \times D} \times \mathbb{R}^{D_z} \xrightarrow{} \mathbb{R}$. Then, inferring a set of different potentials corresponds to inferring a latent  $ \mathbf{z} \in \mathbb{R}^{D_z}  $ that conditions an energy function.
+                Given a trajectory  $ \mathbf{x}(1...T)_i $, we infer a set of  $ L $ different latent vectors for each directed pair of interacting nodes in a trajectory. Thus, given a set of  $ N $ different nodes, this corresponds to a set of  $ N(N-1)L $ energy functions.
+                </p>
+                <p>
+                To generate a trajectory, we optimize the energy function  $ E(\mathbf{x}) = \sum_{ij,l} E_\theta^{ij,l}(\mathbf{x};\mathbf{z}_{ij,l})  $, across node indices  $ i $ and  $ j $ from  $ 1 $ to  $ N $ and latent vectors  $ l  $ from  $ 1  $ to  $L  $. However, assigning one energy function to each latent code becomes prohibitively expensive as the number of nodes in a trajectory increases. Thus, to reduce this computational burden, we parameterize  $L  $ energy functions as shared message passing graph networks, grouping all edge contributions  $ ij  $ in a single network.
+<!--                    The energy is then computed as a summation over all individual node energies after message passing.-->
+<!--                To evaluate the energy corresponding to a single edge factor  $ \mathbf{z}_{ij,l} $ we mask out the contributions of all other edges to the final node energies.-->
+<!--                To condition to message passing shared graph network on each inferred latent  $ \mathbf{z}_{ij,l} $, each edge  $ e(i,j)  $ in the graph is conditioned by the corresponding encoded edge latent code  $ \mathbf{z}_{ij,l}  $, by means of FiLM modulation.-->
+                </p>
+                <p>
+                <b>Inferring Energy Potentials.</b>
+                We utilize  $ \text{Enc}_{\theta}(\mathbf{x}): \mathbb{R}^{T \times D} \xrightarrow{} \mathbb{R}^{D_z}   $ to encode the observed trajectories  $ \mathbf{x}  $ into  $ L  $ latent representations per edge in the observation. We utilize a fully connected GNN with message-passing to infer latents. Instead of classifying edge types and using them as a gate ouputs,  we utilize a continuous latent code  $ \mathbf{z}_{ij,l}  $, allowing for higher flexibility.
+                </p>
+                <p>
+                    <b>Training Objective.</b>
+                    To train NIIP, we infer a set of different EBM potentials by auto-encoding the underlying trajectory. In particular, given a  trajectory  $ \mathbf{x}(1...T)_i=\left(\mathbf{x}(1)_i,\dots,\mathbf{x}(T)_i\right)  $, we split the trajectory into initial conditions   $ \mathbf{x}(1...T_0)  $, corresponding to the first  $ T_0  $ states of the trajectory and  $ \mathbf{x}(T_0...T)  $, corresponding to the subsequent states of the trajectory, where each state of the trajectory consists of  $ N  $ different nodes. The edge potentials are encoded by observing a portion of the overall trajectory  $ \mathbf{x}(1...T^\prime)  $, where  $ T^\prime \leq T  $.
+                    We assign high likelihood to the full trajectories $\mathbf{x}$:
+                    <!--                    We infer a set of different  $ L  $ latents per edge of input observations utilizing the observed states  $ \mathbf{x}(1...T^\prime)  $ using the encoder specified in \sect{sect:inference}, generating a set of latents  $ \{\mathbf{z}\}  $. We then aim to train energy functions so that the following unnormalized distribution assigns low energy and high likelihood to the full trajectory  $ \mathbf{x}  $:-->
+                </p>
+                <p>
+                    \[ p(\mathbf{x}|\{\mathbf{z}\}) \propto \prod_{i,j,l \forall i \neq j} {p(\mathbf{x}|\mathbf{z}_{ij,l})}  = \text{exp}\left({-E_\theta^{ij,l}(\mathbf{x};\text{Enc}_{\theta}(\mathbf{x}(1...T^\prime))_{ij,l}}) \right),\]
+                where  $ \mathbf{z}_{ij,l} = \text{Enc}_{\theta}(\mathbf{x}(1...T^\prime))_{ij,l}  $ and  $ E_\theta^{ij,l}  $ is the energy function linked to the  $ l_\text{th}  $ potential of the encoded edge between nodes  $ i  $ and  $ j  $, respectively.
+                </p>
+                <p>
+                Since we wish to learn a set of potentials with high likelihood for the observed trajectory  $ \mathbf{x}  $, as a tractable supervised manner to learn such a set of valid potentials, we directly supervise that sample using \eqn{eq:mixing} corresponds to the original trajectory  $ \mathbf{x}  $. In particular, we sample  $ M  $ steps of Langevin sampling starting from  $ \tilde{\mathbf{x}}^0  $, which is initialized from uniform noise and the initial conditions fixed as the ground-truth  $ \mathbf{x}(1...T_0)  $:
+<!--                </p>-->
+<!--                <p>-->
+                 \[ \tilde{\mathbf{x}}^m =  \tilde{\mathbf{x}}^{m-1}- \frac{\lambda}{2}\nabla_{\mathbf{x}}\sum_{ij,l}{E_\theta^{ij,l}(\tilde{\mathbf{x}}^{m-1};\mathbf{z}_{ij,l}} ) + \omega^m,\]
+                </p>
+                <p>
+                where  $ m  $ is the  $ m_\text{th}  $ step and  $ \lambda  $ is the step size and  $ \omega^m \sim \mathcal{N}(0, \lambda)  $. We then compute MSE objective with  $ \tilde{\mathbf{x}}^M  $, which is the result of  $ M  $ sampling iterations and the ground truth trajectory  $ \mathbf{x}  $:
+                \[\mathcal{L}_{\text{MSE}}(\theta) = \| \tilde{\mathbf{x}}^M- \mathbf{x} \|^2.\]
+                We optimize both  $ \tilde{\mathbf{x}}  $ and the parameters  $ \theta  $ with automatic differentiation.
+                </p>
+
+        </div>
+    </section>
+
+
+
+
+        
+
+    <section id="results">
+        <hr>
+        <h2>Recombination</h2>
+
+        <p>
+        <div class="flex-row">
+                <p>NIIP can compose relational potentials learned from two different distributions, at test-time.
+                    The process is as follows: we train two instances of our model ( $ \text{NIIP}_S  $,  $ \text{NIIP}_C  $) to reconstruct Springs and Charged trajectories respectively. Given sample trajectories drawn from each dataset (Col. 1 for Springs and 2 for Charged), we encode them into their relational potentials. For each row, we aim to reconstruct the trajectory framed in green while swapping one of the potential pairs (green dashed box) with one drawn from the other dataset (red dashed box). As an example, in the first row of the figure, we encode the Springs trajectory with  $ \text{NIIP}_S  $ and the Charged trajectory with  $ \text{NIIP}_C  $. Next, we fix the initial conditions of the Charged trajectories and sample by optimizing the relational energy functions. To achieve recombination, each model targets specific edges. We minimize the potentials encoded by  $ \text{NIIP}_S  $ for the mutual edges corresponding to the nodes in green dashed boxes. The rest of edge potentials are encoded by  $ \text{NIIP}_C  $. The sampling process is done jointly by both models, each minimizing their corresponding potentials.
+                    The result is a natural combination of the two datasets, which affect only the targeted edges.
+				</p>
+            </div> 
+            <center>
+            <figure>
+                <a>
+                    <img width="70%" src="materials/recombination.png">
+                </a>
+                <p class="caption">
+                    <b>NIIP can recombine encoded potentials at test-time learned from different datasets.</b> Illustrated, samples from Springs (Col. 1) and Charged (Col. 2) and their recombinations (Col. 3). NIIP encodes both trajectories. NIIP is able to reconstruct trajectories framed in green while swapping the edge potentials associated to the nodes in the green dashed box for the ones in the red dashed boxes. Recombinations look semantically plausible.
+                </p>
+            </figure>
+            </center>
+
+        <hr>
+
+
+        <h2>Out-Of-Distribution Detection</h2>
+            <div class="flex-row">
+                <p>We further utilize the potential value or energy produced by NIIP over a trajectory to detect out-of-distribution interactions in a trajectory. In our proposed architecture, energy is evaluated at the node level. Therefore, if NIIP has been trained with a specific dataset, the potentials associated to out-of-distribution type of edges are expected to correspond to higher energy.
+
+                    We design a new dataset (Charged-Springs) as a combination of Springs and Charged interaction types.
+
+<!--                    In simulation, nodes are assigned both roles of Charged and Springs particles, but all the forces they receive correspond to one of the two types with probability  $ p=0.5  $. We train a model with the Springs dataset and evaluate the energies in the proposed mixed setting.-->
+The figure below shows qualitatively how the energy is considerably higher for the nodes with Charged-type forces (drawn in red) when trained for Springs. Quantitative results are summarized in the Table below for 1k test samples.
+<!--                    In the left, we can see that energies corresponding to Spring-type nodes are considerably lower than for Charged-type nodes, indicating that potentials are correctly capturing the behavior of the desired interactions.-->
+<!--We further evaluate the OOD detection for NBA SportsVU dataset. For this experiment, we train NIIP with the 10 players disregarding the Ball node. At test-time, we evaluate the trained model switching one of the players by the Ball node for 1k samples. We observe how the energy corresponding to the Ball is considerably higher. We further train a single parameter binary classifier and find that we can detect the Ball in 70.1% of instances (Bottom/Right of the table).-->
+</p>
+            </div> 
+
+<!--        Red trajectories: Charged particles, Blue-Green trajectories: Springs particles. We train NIIP in Springs dataset. Our model assigns higher energies to those nodes that behave differently than the training set.-->
+<!--        In the left, NIIP is trained on Springs and evaluated onn (i) Springs (ii) Charged and (iii) S\&C, a Springs-Charged mixed dataset. For the NBA case in the right, we train NIIP for the subset of player (P) trajectories of the dataset and evaluate the energies in a setting with player nodes and one ball node. We measure accuracy in detecting the ball trajectory.-->
+        <center>
+            <figure>
+                <a>
+                    <img width="100%" src="materials/ood.png">
+                </a>
+                <p class="caption">
+                    <b>(Left, Figure) Out-Of-Distribution Detection with NIIP</b>. A model trained with certain relation types can detect when a trajectory exhibits a new type of relation. The illustrated trajectories show the energy associated to each one of the nodes.
+                     <b>(Right, Table) Quantitative evaluation of out-of-distribution detection</b>.  We evaluate the average energy associated to each node-type in a scene.
+                </p>
+            </figure>
+            </center>
+<!--            <center>-->
+<!--            <figure>-->
+<!--                <a>-->
+<!--                    <img width="60%" src="materials/ood-table.png">-->
+<!--                </a>-->
+<!--                <p class="caption">-->
+<!--                    <b>Quantitative evaluation of out-of-distribution detection</b>.  We evaluate the average energy associated to each node-type in a scene. In the left, NIIP is trained on Springs and evaluated onn (i) Springs (ii) Charged and (iii) S\&C, a Springs-Charged mixed dataset. For the NBA case in the right, we train NIIP for the subset of player (P) trajectories of the dataset and evaluate the energies in a setting with player nodes and one ball node. We measure accuracy in detecting the ball trajectory.-->
+<!--                </p> <br>-->
+<!--            </figure>-->
+<!--            </center>-->
+
+
+        <hr>
+
+        <h2>Flexible Generation</h2>
+            <div class="flex-row">
+<!--                <p>-->
+<!--                We explore quantitatively the effect of different magnitudes of the added goal potential for prediction in the Charged dataset. Our test set is composed by 1k samples.-->
+<!--                For this experiment, the particles live within a  $ [-1,1]  $ box, for both  $ x  $ and  $ y  $ coordinates. The goal is the center  $ \mathbf{g} = (0,0)  $. In the table,  $ P_{add}  $ indicates the use of edge potentials encoded by NIIP while adding the new potentials with different strengths: (i.)  $ s1: \epsilon=1  $, (ii.)  $ s2: \epsilon=5  $ and (iii.)  $ s3: \epsilon=10  $. We observe how the squared distance to the goal decreases as expected.-->
+<!--                </p>-->
+                                 <p>Another advantage of our approach is that it can flexibly incorporate test-time user specified potentials. For this experiment, we investigate three different sets of potentials.
+                </p>
+                <p>
+                    <b>Avoid Area Potentials</b> In this case, we penalize the portion of the predicted trajectory  $ \tilde{\mathbf{p}}^{t}_i  $ that is inside a given restricted area  $ \mathbf{A}  $. We do so by computing the distance of each particle  $ i  $ that lays within the region  $ \mathbf{A}  $ to the borders  $ \mathbf{b}_A  $ of  $ \mathbf{A}  $. The added potential is:  $ P = \epsilon\lambda \sum_{i,t}(\tilde{\mathbf{p}}_{A,i}^{0:T-1} - \mathbf{b}_A - C)^2  $, where  $ C  $ is a small margin that ensures that the particles are repelled outside of the boundaries of  $ \mathbf{A}  $. With  $ \lambda =1e-3/{N}  $.
+                In the Table below (row 2), we explore the effect of different strengths of this potential type, in the prediction task. We also provide a visual example. For this experiment, we avoid the area  $ \mathbf{A} = [(0, -1), (1, 1)]  $, which corresponds to half of the box (see Figure). We use the following parameters: (i.)  $ s1: \epsilon=1  $, (ii.)  $ s2: \epsilon=5e1  $ and (iii.)  $ s3: \epsilon=5e2 $ .
+                </p>
+
+                <center>
+                    <figure>
+                        <a>
+                            <img width="70%" src="materials/added_potentials.png">
+                        </a>
+                        <p class="caption">
+                            <b>(Top, Figure) With NIIP we can add and control test-time potentials to achieve a desired behavior for Prediction in the Charged Dataset</b>.
+                            We design test-time potentials to steer trajectories out of a prohibited area.
+                             <b>(Bottom, Table) Quantitative results.</b>.
+                            In row 1 of the table, we show the squared distance after applying a goal potential towards the center (0,0) of the scene with different strengths. In row 2, we report the percentage of time-steps that particles stay in a particular area A = [(0, −1), (1, 1)] after applying a potential that enforces avoiding A. The figure shows the effect of applying test-time potentials in the latter experiment.
+                        </p>
+                    </figure>
+                </center>
+                    <p>
+                    <b>Velocity Potentials.</b> We incorporate the following velocity potential as an energy function:  $ E = \epsilon \lambda \sum_{i,t}\sqrt{(\mathbf{v}_{x,i}^t)^2 + (\mathbf{v}_{y,i}^t)^2}$, for particle  $ i  $ in time  $ t  $. The weight  $ \lambda =1e-2/{N}  $ scales the effect of this function over the rest and  $ \epsilon  $ is a multiplicative constant that indicates the strength and direction of the potential.
+<!--                Figure \ref{fig:new-constraints} (two top rows), we show (\textbf{i.})  $ \epsilon = 0  $: Reconstruction (top-left); (\textbf{ii.})  $ \epsilon = 4  $: Decrease of velocity (middle-left); (\textbf{iii.})  $ \epsilon = -5  $: Low increase of velocity (top-right); and (\textbf{iv.})  $ \epsilon = -10  $: High increase of velocity (middle-right)-->
+                </p>
+                <p>
+                    <b>Goal Potentials.</b> We also add at test-time an attraction potential as a the squared distance of the predicted coordinates to the goal:  $ P = \epsilon\lambda \sum_{i,t}(\tilde{\mathbf{p}}^{0:T-1}_i - \mathbf{g})^2  $, where  $ \mathbf{g}  $ is defined as the coordinates of our goal point. We define the trajectory coordinates  $ \tilde{\mathbf{p}}^{t}_i  $ as an accumulation of the un-normalized velocities  $ \mathbf{v}^{t}_i  $ predicted by NIIP:  $ \tilde{\mathbf{p}}^{t+1}_i = \sum_{t}(\mathbf{v}^{0:t}_i) + \mathbf{p}^0_i  $ for particle  $ i  $ at time-step  $ t  $.  Here,  $ \mathbf{p}^1  $ is fixed initial ground-truth location of the particle at time 0 and  $ \lambda =5e-4/{N}$.
+                </p>
+<!--                <center>-->
+<!--                    <figure>-->
+<!--                        <a>-->
+<!--                            <img width="60%" src="materials/new-potentials-table.png">-->
+<!--                        </a>-->
+<!--                        <p class="caption">-->
+<!--                            <b>Quantitative evaluation of out-of-distribution detection</b>. We evaluate the average energy associated to each node-type in a scene. In the left, NIIP is trained on Springs and evaluated onn (i) Springs (ii) Charged and (iii) S&C, a Springs-Charged mixed dataset. For the NBA case in the right, we train NIIP for the subset of player (P) trajectories of the dataset and evaluate the energies in a setting with player nodes and one ball node. We measure accuracy in detecting the ball trajectory.-->
+<!--                        </p> <br>-->
+<!--                    </figure>-->
+<!--                </center>-->
+                <center>
+                    <figure>
+                        <a>
+                            <img width="90%" src="materials/added_potentials_nba.png">
+                        </a>
+                        <p class="caption">
+                            <b>NIIP is able to incorporate new potentials in test-time</b>. We can see depicted reconstructions of NBA samples with added potentials. Trajectories are appropriately modified according to each added potential.
+                        </p> 
+                    </figure>
+                </center>
+            </div>
+        <hr>
+
+
+        <h2>Forecasting</h2>
+            <div class="flex-row">
+                <p>We asses NIIP's capabilities for trajectory forecasting.  NIIP can predict trajectories faithfully in the future, displaying favorable mid- and long-term performance when compared to existing approaches.
+                </p>
+            </div> 
+
+            <center>
+            <figure>
+                <a>
+                    <img width="80%" src="materials/charts.png">
+                </a>
+                <p class="caption">
+                </p>
+            </figure>
+            </center>
+<!--        <center>-->
+<!--            <figure>-->
+<!--                <a>-->
+<!--                    <img width="49%" src="materials/Prediction_ Charged Dataset.png">-->
+<!--                </a>-->
+<!--                <p class="caption">-->
+<!--                </p> <br>-->
+<!--            </figure>-->
+<!--                        <figure>-->
+<!--                <a>-->
+<!--                    <img width="49%" src="materials/Prediction_ NBA SportsVU Dataset.png">-->
+<!--                </a>-->
+<!--                <p class="caption">-->
+<!--                </p> <br>-->
+<!--            </figure>-->
+<!--                        <figure>-->
+<!--                <a>-->
+<!--                    <img width="49%" src="materials/Prediction_ JPL Horizons Dataset.png">-->
+<!--                </a>-->
+<!--                <p class="caption">-->
+<!--                </p> <br>-->
+<!--            </figure>-->
+<!--            </center>-->
+
+
+    </section> 
+
+
+
+
+<!--    <section id="related_projects">-->
+<!--        <hr>-->
+<!--        <h2>Related Projects</h2>  -->
+
+<!--          <br>-->
+<!--          Check out a list of our related papers on compositional generation and energy based models. A full list can be found <a href="https://energy-based-model.github.io/Energy-based-Model-MIT/">here</a>!-->
+<!--          <br>-->
+
+<!--        <div class="row vspace-top">-->
+<!--        <div class="col-sm-3">-->
+<!--            <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">-->
+<!--                <source src="materials/related/teaser_glide.mp4" type="video/mp4">-->
+<!--            </video>-->
+<!--        </div>-->
+<!--        <div class="col-sm-9">-->
+<!--          <div class="paper-title">-->
+<!--            <a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">Compositional Visual Generation with Composable Diffusion Models</a>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            We present a method to compose different diffusion models together, drawing on the close connection of-->
+<!--            diffusion models with EBMs. We illustrate how compositional operators enable-->
+<!--            the ability to composing multiple sets of objects together as well as generate images subject to -->
+<!--            complex text prompts.-->
+<!--        </div>-->
+<!--        </div>-->
+<!--        </div>-->
+
+<!--        <div class="row vspace-top">-->
+<!--        <div class="col-sm-3">-->
+<!--            <div class="move-down">-->
+<!--                <img src="materials/related/comp_cartoon.png" class="img-fluid" alt="comp_carton" style="width:100%">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-9">-->
+<!--          <div class="paper-title">-->
+<!--            <a href="https://energy-based-model.github.io/compositional-generation-inference/">Compositional Visual Generation with Energy Based Models</a>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            We present a set of compositional operators that enable EBMs to exhibit <b>zero-shot compositional</b> visual generation, enabling us to compose visual concepts-->
+<!--            (through operators of conjunction, disjunction, or negation) together in a zero-shot manner.-->
+<!--            Our approach enables us to generate faces given a  description-->
+<!--            ((Smiling AND Female) OR (NOT Smiling AND Male)) or to combine several different objects together.-->
+<!--        </div>-->
+<!--        </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="row vspace-top">-->
+<!--        <div class="col-sm-3">-->
+<!--            <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">-->
+<!--                <source src="materials/related/half.mp4" type="video/mp4">-->
+<!--            </video>-->
+<!--        </div>-->
+<!--        <div class="col-sm-9">-->
+<!--          <div class="paper-title">-->
+<!--                        <a href="https://openai.com/blog/energy-based-models/">Implicit Generation and Generalization with Energy Based Models</a>-->
+<!--        </div>-->
+<!--                We introduce a method to scale EBM training to generate high resolution images.-->
+<!--                We propose to utilize Langevin dynamics, initialized from random noise, to iteratively-->
+<!--                refine and denoise image samples. We further demonstrate unique properties of EBMs-->
+<!--                such as compositionality, continual learning, and robustness.-->
+<!--        <div>-->
+<!--        </div>-->
+<!--        </div>-->
+
+<!--    </section> -->
+
+    <section id="paper">
+        <h2>Team</h2>        
+        <div class="row">
+            <div class="column5">
+                <a href='https://www.linkedin.com/in/armandcomas/'>
+                    <img  src=./materials/people/comas-a.jpeg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Armand Comas </p>
+                <p class=institution>Northeastern University</p>
+            </div>
+
+            <div class="column5">
+                <a href='https://yilundu.github.io/'>
+                    <img  src=./materials/people/yilun3.png class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Yilun Du </p>
+                <p class=institution>MIT CSAIL</p>
+            </div>
+
+            <div class="column5">
+                <a href='https://www.linkedin.com/in/christian-fernandez-lopez-868b09161/'>
+                    <img  src=./materials/people/fernandez-c.jpeg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Christian Fernandez </p>
+                <p class=institution>Northeastern University</p>
+            </div>
+
+            <div class="column5">
+                <a href='https://sandeshgh.com/'>
+                    <img  src=./materials/people/ghimire-s.jpeg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Sandesh Ghimire </p>
+                <p class=institution>Northeastern University</p>
+            </div>
+         </div>
+         <div class="row">
+            <div class="column5">
+                <a href='https://scholar.google.com/citations?user=hbNllP0AAAAJ&hl=en'>
+                    <img  src=./materials/people/mario.png class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Mario Sznaier </p>
+                <p class=institution>Northeastern University</p>
+            </div>
+
+            <div class="column5">
+                <a href='https://scholar.google.com/citations?user=rRJ9wTJMUB8C&hl=en'>
+                    <img  src=./materials/people/Tenenbaum-250x250px.jpeg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Joshua Tenenbaum </p>
+                <p class=institution>MIT CSAIL</p>
+            </div>
+
+            <div class="column5">
+                <a href="https://scholar.google.com/citations?user=htt9T1AAAAAJ&hl=en">
+                    <img src=./materials/people/octavia.png class="figure-img img-fluid rounded-circle" height=100px width=200px>
+                </a>
+                <p class=profname> Octavia Camps </p>
+                <p class=institution>Northeastern University</p>
+            </div>
+         </div>
+
+    </section>
+   
+    <section>
+        This webpage template was recycled from <a href='https://nv-tlabs.github.io/LION/'>here</a>.
+        <center><p><a href='https://accessibility.mit.edu/'><b>Accessibility</b></a></p></center>
+    </section>
+    
+
+
+</div>
+</body>
+</html>
