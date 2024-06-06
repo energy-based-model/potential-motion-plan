@@ -173,23 +173,23 @@
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body">
+    <div class="hero-body centered">
       <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
         <source src="materials/unsupervised_discovery_teaser.m4v"
                 type="video/mp4">
       </video> -->
-      <center>
+      <!-- <center> -->
       <figure>
-        <a>
+        <!-- <a> -->
             <img width="70%" src="materials/0-teaser-icml-website.png">
-        </a>
+        <!-- </a> -->
         <p class="caption">
             <b>Illustrative Example of Composing Diffusion Energy Potentials.</b>
             Our approach learns different potential functions over motion planning trajectories $q_{1:N}$ (orange dashed lines). Different potentials can be combined and optimized to construct new motion plans that avoid obstacles encoded in both potential functions.
 
         </p>
     </figure>
-    </center>
+    <!-- </center> -->
 
     </div>
   </div>
@@ -200,27 +200,103 @@
              We discover a set of compositional concepts given a dataset of unlabeled images. Score functions representing each concept $\{c^1, \dots, c^K\}$ are composed together to form a compositional score function that is trained to denoise images. The inferred concepts can be used to generate new images.
 </p> -->
 
-<!-- <section class="section">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
          
+      <!-- <p> -->
+      <!-- We next discuss how to learn potentials for potential motion planning that enable us to effectively optimize samples. -->
+      <b>Learning Potentials for Motion Planning. </b>
+      Given a motion plan $q_{1:T}$ from start state $q_{\text{st}}$ to end state $q_{\text{e}}$ and a characterization of the configuration space $C$ ($\textit{i.e.}$ the set of obstacles in the environment), we propose to learn a trajectory-level potential function $U_\theta$ so that
+      <!-- </p>           -->
+      \begin{equation}
+      q_{1:T}^* = \text{arg\,min}_{q_{1:T}} U_\theta(q_{1:T}, q_{\text{st}}, q_{\text{e}}, C),
+      \label{eqn:potential_traj}
+      \end{equation} 
 
-    <p>
-      We next discuss how to learn potentials for potential motion planning that enable us to effectively optimize samples. Given a motion plan $q_{1:T}$ from start state $q_{\text{st}}$ to end state $q_{\text{e}}$ and a characterization of the configuration space $C$ ($\textit{i.e.}$ the set of obstacles in the environment), we propose to learn a trajectory-level potential function $U_\theta$ so that
-    </p>          
-    \begin{equation}
-    q_{1:T}^* = \text{arg\,min}_{q_{1:T}} U_\theta(q_{1:T}, q_{\text{st}}, q_{\text{e}}, C),
-    \label{eqn:potential_traj}
-    \end{equation} 
+      where $q_{1:T}^*$ is a successful motion plan from $q_{\text{st}}$ to $q_{\text{e}}$. 
+      To learn the potential function above, we propose to learn a EBM 
+      <a href="#ref1" class="citation-link">[1,</a>
+      <a href="#ref2" class="citation-link">2]</a>
+      <!-- ~\citep{lecun2006tutorial,du2019implicit}  -->
+      across a dataset of solved motion planning $D = \{q_{\text{st}}^i, q_{\text{e}}^i,  q_{1:T}^i, C^i \}$, where $e^{-E_\theta(q_{1:T}|q_{\text{st}}, q_{\text{e}}, C)} \propto p(q_{1:T}|q_{\text{st}}, q_{\text{e}}, C)$. Since the dataset $D$ is of solved motion planning problems, the learned energy function $E_\theta$ will have minimal energy at successful motion plans $q_{1:T}^*$ and thus satisfy our potential function $U_\theta$. 
+      <!-- in \Eqref{eqn:potential_traj}. -->
+      <br/>
+      <br/>
+      <br/>
+
+      <b>Learning EBM for Motion Plan Generation.</b>
+      To learn the EBM landscape that enables us to effectively optimize and generate motion plans $q_{1:T}^*$, we propose to shape the energy landscape using denoising diffusion training objective
+      <!-- <a href="#ref3" class="citation-link">[1]</a> -->
+      <a href="#ref3" class="citation-link">[3,</a>
+      <a href="#ref4" class="citation-link">4]</a>.
+      <!-- ~\citep{sohl2015deep,ho2020denoising}. -->
+
+      Formally, to train our potential, we use the energy based diffusion training objective in
+      <a href="#ref5" class="citation-link">[5]</a>,
+      <!-- where the gradient of energy function is trained to denoise noise corrupted motion plans $q_{1:T}^*$, -->
+      where the gradient of energy function is trained to denoise noise-corrupted motion plans $q_{1:T}^i$ from dataset $D$,
+
+      \begin{equation}
+      \mathcal{L}_{\text{MSE}}=\|\mathbf{\epsilon} - \nabla_{q_{1:T}} E_\theta(\sqrt{1-\beta_s} q_{1:T}^i +  \sqrt{\beta_s} \mathbf{\epsilon}, s, q_{\text{st}}^i, q_{\text{e}}^i, C^i)\|^2
+
+      \label{eqn:train_obj}
+      \end{equation}
+
+      where $\epsilon$ is sampled from Gaussian noise $\mathcal{N}(0, 1)$,  $s \in\{1,2,...,S\}$ is the denoising diffusion step (we set $S = 100$), and $\beta_s$ is the corresponding Gaussian noise corruption on a motion planning path $q_{1:T}^i$. We refer to $E_\theta$ as the <i>diffusion potential function</i>.
+
+      <br/>
+      <br/>
+      <br/>
+
+      <b>Optimize and Sample from Diffusion Potential Function.</b>
+      To optimize and sample from our diffusion potential function, we initialize a motion path $q_{1:T}^S$ at diffusion step $S$ from Gaussian noise $\mathcal{N}(0, 1)$ and optimize for motion path following the gradient of the energy function $E_{\theta}$. We iteratively refine the motion path $q_{1:T}^s$ across each diffusion step following 
+      
+      \begin{align}
+      & q_{1:T}^{s-1}=q_{1:T}^{s}-\gamma \epsilon + \xi, \quad \xi \sim \mathcal{N} \bigl(0, \sigma^2_s I \bigl), \notag \\
+      & \text{where} \: \: \epsilon =  \nabla_{q_{1:T}} E_\theta(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C)
+      \label{eqn:diffusion_opt}
+      \end{align}
+
+      To parameterize the energy function $E_\theta(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C)$, we use classifier-free guidance <a href="#ref6" class="citation-link">[6]</a>
+      <!-- \cite{ho2022classifier} -->
+       to form a peaker composite energy function conditioned on $C$.
+      
+      $\gamma$ and $\sigma^2_s$ are diffusion specific scaling constants (A rescaling term at each diffusion step is omitted above for clarity). The final predicted motion path $q_{1:T}^*$ corresponds to  the output $q_{1:T}^0$ after running $S$ steps of optimization from the diffusion potential function.
+
+      
+      <br/>
+      <br/>
+      <br/>
+      <b>Composing Diffusion Potential Functions</b>
+
+      Given two separate diffusion potential functions $E^1_\theta(\cdot)$ and $E^2_\theta(\cdot)$, encoding separate constraints for motion planning, we can likewise form a composite potential function $E^{\text{comb}}(\cdot) = E^1(\cdot) + E^2(\cdot)$ by directly summing the corresponding potentials. 
+      To sample from the new diffusion potential function $E^{\text{comb}}$, we can follow 
+
+        
+      \begin{align}
+          &q_{1:T}^{s-1}=q_{1:T}^{s}-\gamma \epsilon^{\text{comb}}+\xi, \quad \xi \sim \mathcal{N} \bigl(0, \sigma^2_s I \bigl), \label{eqn:diffusion_opt_comb} \\
+
+          & \text{where} \: \: \epsilon^{\text{comb}} = \nabla_{q_{1:T}} (E_\theta^{1}(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C_1) + E_\theta^{2}(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C_2)). \notag
+      \end{align}
+
+      This potential function $E^{\text{comb}}$ will have low energy precisely at motion planning paths $q_{1:T}$ which satisfy both constraints, with sampling corresponding to optimizing this potential function. Hence, by iteratively sampling from the composite potential function, we can obtain motion plans that satisfy both constraints. Please see our compositional results below.
+
+      <!-- (see Appendix \ref{sect:app_cond_indep}) -->
+      <!-- This composite potential is the ground truth potential combining constraints if the constraints are independent, which is satisfied if the set of trajectories given constraints are uniformly distributed, and otherwise serves as approximate proxy to optimize multiple constraints. -->
+
+
+
+
 
         </div>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 
 <section class="section">
@@ -229,7 +305,7 @@
     <!-- Animation. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-4">Potential Diffusion Process</h2>
+        <h2 class="title is-4">Trajectory Denoising Process using Diffusion Potential Function</h2>
 
         <!-- <div class="content has-text-justified has-text-centered"> -->
           <!-- <p> -->
@@ -359,67 +435,43 @@
 
           </p>
         </div>
-        <!-- <img src="materials/0-teaser-icml.png" -->
-             <!-- alt="Artistic Concept Decomposition."/> -->
-          
-              <!-- <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
-                  <source src="materials/kuka7d/pdb-1-600.gif" type="video/mp4">
-              </video> -->
 
-            <!-- <figure-luo> -->
-              <!-- <img src="materials/kuka7d/pbd-1-600.gif" alt="" width="30%"> -->
-              <!-- <div class="caption">Caption for Image 1</div> -->
-
-              <!-- <figcaption>asdf</figcaption> -->
-            <!-- </figure-luo> -->
-
-              
-            <!-- <figure-luo> -->
-
-              <!-- <img src="materials/kuka7d/mpo-1-600.gif" alt="" width="30%"> -->
-
-            <!-- </figure-luo> -->
-
-        <div class="container bg-3">
+        <!-- <div class="container bg-3">
           <div class="row">
-        
             <div class="video-container text-centered">
 
               <div class="col-lg-4 centered-caption">
                 <figure>
                   <img src="materials/kuka7d/pbd-1-600.gif" alt="">
-                  <!-- <figcaption class="text-centered"> asd </figcaption> -->
-                  <!-- <center-caption class="has-text-centered"> asd </center-caption> -->
-                  <!-- <center-caption class="centered"> asd </center-caption> -->
-                  <!-- <center-caption> asd </center-caption> -->
-                  <!-- <div class="centered-caption">Ours</div> -->
+                  <!-- <figcaption class="text-centered"> asd </figcaption> -- >
+                  <!-- <center-caption class="has-text-centered"> asd </center-caption> -- >
+                  <!-- <center-caption class="centered"> asd </center-caption> -- >
+                  <!-- <center-caption> asd </center-caption> -- >
+                  <!-- <div class="centered-caption">Ours</div> -- >
                   Ours
-                  <!-- <div class="text-centered">asd</div> -->
+                  <!-- <div class="text-centered">asd</div> -- >
                 </figure>
 
-                <!-- <div class="caption">Ours</div> -->
-                <!-- <caption>asd</caption> -->
+                <!-- <div class="caption">Ours</div> -- >
+                <!-- <caption>asd</caption> -- >
               </div>
 
-              <!-- <div class="image-container"> -->
               <div class="col-lg-4 centered-caption">
                 <img src="materials/kuka7d/mpo-1-600.gif" alt="">
-                <!-- <div class="caption centered-caption"> -->
                   MπNet
-                <!-- </div> -->
               </div>
             
             </div>
-
           </div>
-        </div>
+        </div> -->
 
 
 
 
-        <br/>
+        <!-- <br/> -->
 
-        <div class="container bg-3">
+        <!-- Two rows layout -->
+        <!-- <div class="container bg-3">
           <div class="row">
 
             <div class="video-container">
@@ -435,6 +487,111 @@
                   MπNet
               </div>
             </div>
+
+          </div>
+        </div> -->
+
+        <!-- NEW June 6, one row -->
+        <div class="container bg-3">
+          <div class="row">
+            <div class="col-sm-6 centered-caption"  style="font-size: 16pt;">
+              (a)
+            </div>
+            <div class="col-sm-6 centered-caption" style="font-size: 16pt;">
+              (b)
+            </div>
+          </div>
+        </div>
+          
+        <div class="container bg-3">
+          <div class="row">
+
+            <!-- <div class="video-container"> -->
+            <!-- Problem 1 -->
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/pbd-1-600.mp4" type="video/mp4">
+                </video>
+                Ours
+              </div>
+
+
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/mpo-1-600.mp4" type="video/mp4">
+                </video>
+                MπNet
+              </div>
+
+              <!-- Problem 2 -->
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/pbd-2-600.mp4" type="video/mp4">
+                </video>
+                Ours
+              </div>
+
+
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/mpo-2-600.mp4" type="video/mp4">
+                </video>
+                MπNet
+              </div>
+            <!-- </div> -->
+
+          </div>
+        </div>
+        <br/>
+
+
+        <div class="container bg-3">
+          <div class="row">
+            <div class="col-sm-6 centered-caption"  style="font-size: 16pt;">
+              (c)
+            </div>
+            <div class="col-sm-6 centered-caption" style="font-size: 16pt;">
+              (d)
+            </div>
+          </div>
+        </div>
+          
+        <div class="container bg-3">
+          <div class="row">
+
+            <!-- <div class="video-container"> -->
+            <!-- Problem 1 -->
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/pbd-3-600.mp4" type="video/mp4">
+                </video>
+                Ours
+              </div>
+
+
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/mpo-3-600.mp4" type="video/mp4">
+                </video>
+                MπNet
+              </div>
+
+              <!-- Problem 2 -->
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/pbd-4-600.mp4" type="video/mp4">
+                </video>
+                Ours
+              </div>
+
+
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/mpo-4-600.mp4" type="video/mp4">
+                </video>
+                MπNet
+              </div>
+            <!-- </div> -->
 
           </div>
         </div>
@@ -459,7 +616,7 @@
         <div class="content has-text-justified has-text-centered">
 
           <p>
-           Our method can generalize to more difficult out-of-distribution environments by sampling from the composite diffusion potential function. We demonstrate results where we compose potentials of the same obstacle type, of different obstacle types, and of static and dynamic obstacles.
+           Our method can generalize to more difficult out-of-distribution environments by sampling from the composite diffusion potential function. We demonstrate qualitative results where we compose potentials of the same obstacle type, of different obstacle types, and of static and dynamic obstacles. Please see our paper for more comprehensive results.
           </p>
 
 
@@ -534,12 +691,12 @@
 
 
 <!-- TODO: bring back -->
-<!-- 
+
 <section class="section">
         <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Related Projects</h2>
+        <h2 class="title is-4">Related Projects</h2>
           Check out a list of our related papers on compositional generation and energy based models. A full list can be found <a href="https://energy-based-model.github.io/Energy-based-Model-MIT/">here</a>!
           <br>
           <br>
@@ -561,22 +718,6 @@
           <br>
 
 
-        <div class="row vspace-top">
-        <div class="col-sm-3">
-            <video width="100%" playsinline="" autoplay="" preload="" muted="">
-                <source src="materials/related/comet.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="col-sm-9">
-          <div class="paper-title">
-            <a href="https://energy-based-model.github.io/comet/">Unsupervised Learning of Compositional Energy Concepts</a>
-        </div>
-        <div>
-            We propose COMET, which discovers and represents concepts as separate energy functions, enabling us to represent both global concepts as well as objects under a unified framework. COMET discovers energy functions through recomposing the input image, which we find captures independent factors without additional supervision.
-        </div>
-        </div>
-        </div>
-          <br>
 
 
         <div class="row vspace-top">
@@ -597,48 +738,75 @@
         </div>
         </div>
         </div>
-          <br>
-
-
-        <div class="row vspace-top">
-          <div class="col-sm-3">
-              <video width="100%" playsinline="" autoplay="" preload="" muted="">
-                  <source src="materials/related/clevr_teaser.mp4" type="video/mp4">
-              </video>
-          </div>
-          <div class="col-sm-9">
-            <div class="paper-title">
-              <a href="https://composevisualrelations.github.io/">Learning to Compose Visual Relations</a>
-            </div>
-            <div>
-                The visual world around us can be described as a structured set of objects and their associated relations. In this work, we propose to represent each relation as an unnormalized density (an energy-based model), enabling us to compose separate relations in a factorized manner. We show that such a factorized decomposition allows the model to both generate and edit scenes that have multiple sets of relations more faithfully.
-            </div>
-          </div>
-        </div>
         <br>
+
+
+        
 
         <div class="row vspace-top">
         <div class="col-sm-3">
             <div class="move-down">
-                <img src="materials/related/comp_cartoon.png" class="img-fluid" alt="comp_carton" style="width:100%">
+                <img src="materials/related/diffuser_schematic-01.png" class="img-fluid" alt="comp_carton" style="width:100%">
             </div>
         </div>
         <div class="col-sm-9">
           <div class="paper-title">
-            <a href="https://energy-based-model.github.io/compositional-generation-inference/">Compositional Visual Generation with Energy Based Models</a>
+            <a href="https://diffusion-planning.github.io/">Planning with Diffusion for Flexible Behavior Synthesis</a>
         </div>
         <div>
-            We present a set of compositional operators that enable EBMs to exhibit <b>zero-shot compositional</b> visual generation, enabling us to compose visual concepts
-            (through operators of conjunction, disjunction, or negation) together in a zero-shot manner.
-            Our approach enables us to generate faces given a  description
-            ((Smiling AND Female) OR (NOT Smiling AND Male)) or to combine several different objects together.
+          Diffuser is a denoising diffusion probabilistic model that plans by iteratively refining randomly sampled noise. The denoising process lends itself to flexible conditioning, by either using gradients of an objective function to bias plans toward high-reward regions or conditioning the plan to reach a specified goal.
         </div>
         </div>
         </div>
       </div>
     </div>
         </div>
-</section> -->
+</section>
+
+
+<!-- Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., and Ganguli, S. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pp. 2256–2265. PMLR, 2015. -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- <h2 class="title is-4">Compositional Generalization over Increasing Obstacles</h2> -->
+        <h2 class="title is-4">References</h2>
+
+        <ol>
+          <!-- <li id="ref1" class="reference">Smith et al., <i>Effects of Something Interesting</i>, Journal of Important Studies, 2023.</li> -->
+          <li id="ref1" class="reference">
+            LeCun, Y., Chopra, S., Hadsell, R., Ranzato, M., and Huang, F. A tutorial on energy-based learning. Predicting structured data, 1(0), 2006.
+          </li>
+
+          <li id="ref2" class="reference">
+            Du, Y. and Mordatch, I. Implicit generation and modeling with energy based models. Advances in Neural Information Processing Systems, 32, 2019.
+          </li>
+
+          <li id="ref3" class="reference">
+            Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., and Ganguli, S. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pp. 2256–2265. PMLR, 2015.
+          </li>
+
+          <li id="ref4" class="reference">
+            Ho, J., Jain, A., and Abbeel, P. Denoising diffusion probabilistic models. In Advances in Neural Information Processing Systems, volume 33, pp. 6840–6851, 2020.
+          </li>
+
+          <li id="ref5" class="reference">
+            Du, Y., Durkan, C., Strudel, R., Tenenbaum, J. B., Dieleman, S., Fergus, R., Sohl-Dickstein, J., Doucet, A., and Grathwohl, W. S. Reduce, reuse, recycle: Compositional generation with energy-based diffusion models and mcmc. In International Conference on Machine Learning, pp.8489–8510. PMLR, 2023.
+          </li>
+
+          <li id="ref6" class="reference">
+            Ho, J. and Salimans, T. Classifier-free diffusion guidance. arXiv preprint arXiv:2207.12598, 2022.
+          </li>
+
+      </ol>
+
+        
+      </div>
+    </div>
+  </div>
+</section>
 
 
 

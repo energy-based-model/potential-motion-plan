@@ -120,6 +120,9 @@ figure-luo {
   margin-bottom: 10px;
 }
 
+.centered{
+  text-align: center;
+}
 
 .left-caption{
   text-align: left; 
@@ -145,6 +148,29 @@ figure-luo {
 }
 
 
+/* Citations Begins */
+.citation-link {
+  color: #007BFF; /* Change this color to whatever you prefer */
+  text-decoration: none; /* Optional: removes underline from links */
+}
+.citation-link:hover {
+  color: #0056b3; /* Optional: change color on hover for better UI */
+}
+ol {
+  list-style: none; /* Removes default numbering */
+  padding-left: 0;
+}
+.reference {
+  padding-left: 20px;
+}
+.reference::before {
+  content: "[" counter(item) "] "; /* Using counter to format numbers */
+  counter-increment: item; /* Increments counter for each item */
+}
+ol {
+  counter-reset: item; /* Resets the counter to start numbering from 1 */
+}
+/* Citations Ends */
 
 
 /* ---- Ends ----- */
