@@ -181,7 +181,7 @@
       <!-- <center> -->
       <figure>
         <!-- <a> -->
-            <img width="70%" src="materials/0-teaser-icml-website.png">
+            <img width="70%" src="materials/0-teaser-icml-website-v2.png">
         <!-- </a> -->
         <p class="caption">
             <b>Illustrative Example of Composing Diffusion Energy Potentials.</b>
@@ -199,6 +199,8 @@
  <!-- <p>
              We discover a set of compositional concepts given a dataset of unlabeled images. Score functions representing each concept $\{c^1, \dots, c^K\}$ are composed together to form a compositional score function that is trained to denoise images. The inferred concepts can be used to generate new images.
 </p> -->
+
+<hr>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -218,9 +220,10 @@
       \end{equation} 
 
       where $q_{1:T}^*$ is a successful motion plan from $q_{\text{st}}$ to $q_{\text{e}}$. 
-      To learn the potential function above, we propose to learn a EBM 
-      <a href="#ref1" class="citation-link">[1,</a>
-      <a href="#ref2" class="citation-link">2]</a>
+      To learn the potential function above, we propose to learn an 
+      <a href="https://openai.com/index/energy-based-models/" class="citation-link">EBM</a>
+      <!-- <a href="#ref1" class="citation-link">[1,</a> -->
+      <!-- <a href="#ref2" class="citation-link">2]</a> -->
       <!-- ~\citep{lecun2006tutorial,du2019implicit}  -->
       across a dataset of solved motion planning $D = \{q_{\text{st}}^i, q_{\text{e}}^i,  q_{1:T}^i, C^i \}$, where $e^{-E_\theta(q_{1:T}|q_{\text{st}}, q_{\text{e}}, C)} \propto p(q_{1:T}|q_{\text{st}}, q_{\text{e}}, C)$. Since the dataset $D$ is of solved motion planning problems, the learned energy function $E_\theta$ will have minimal energy at successful motion plans $q_{1:T}^*$ and thus satisfy our potential function $U_\theta$. 
       <!-- in \Eqref{eqn:potential_traj}. -->
@@ -229,14 +232,16 @@
       <br/>
 
       <b>Learning EBM for Motion Plan Generation.</b>
-      To learn the EBM landscape that enables us to effectively optimize and generate motion plans $q_{1:T}^*$, we propose to shape the energy landscape using denoising diffusion training objective
+      To learn the EBM landscape that enables us to effectively optimize and generate motion plans $q_{1:T}^*$, we propose to shape the energy landscape using <a href="https://arxiv.org/abs/1503.03585" class="citation-link">denoising diffusion</a> training objective.
       <!-- <a href="#ref3" class="citation-link">[1]</a> -->
-      <a href="#ref3" class="citation-link">[3,</a>
-      <a href="#ref4" class="citation-link">4]</a>.
+      <!-- <a href="#ref3" class="citation-link">[3,</a> -->
+      <!-- <a href="#ref4" class="citation-link">4]</a>. -->
       <!-- ~\citep{sohl2015deep,ho2020denoising}. -->
 
-      Formally, to train our potential, we use the energy based diffusion training objective in
-      <a href="#ref5" class="citation-link">[5]</a>,
+      Formally, to train our potential, we use the 
+      <a href="https://energy-based-model.github.io/reduce-reuse-recycle/" class="citation-link">energy based diffusion</a>
+       training objective,
+       <!-- in <a href="#ref5" class="citation-link">[5]</a>, -->
       <!-- where the gradient of energy function is trained to denoise noise corrupted motion plans $q_{1:T}^*$, -->
       where the gradient of energy function is trained to denoise noise-corrupted motion plans $q_{1:T}^i$ from dataset $D$,
 
@@ -261,7 +266,9 @@
       \label{eqn:diffusion_opt}
       \end{align}
 
-      To parameterize the energy function $E_\theta(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C)$, we use classifier-free guidance <a href="#ref6" class="citation-link">[6]</a>
+      To parameterize the energy function $E_\theta(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C)$, 
+      we use <a href="https://arxiv.org/abs/2207.12598" class="citation-link">classifier-free guidance</a>
+      <!-- <a href="#ref6" class="citation-link">[6]</a> -->
       <!-- \cite{ho2022classifier} -->
        to form a peaker composite energy function conditioned on $C$.
       
@@ -283,7 +290,8 @@
           & \text{where} \: \: \epsilon^{\text{comb}} = \nabla_{q_{1:T}} (E_\theta^{1}(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C_1) + E_\theta^{2}(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C_2)). \notag
       \end{align}
 
-      This potential function $E^{\text{comb}}$ will have low energy precisely at motion planning paths $q_{1:T}$ which satisfy both constraints, with sampling corresponding to optimizing this potential function. Hence, by iteratively sampling from the composite potential function, we can obtain motion plans that satisfy both constraints. Please see our compositional results below.
+      This potential function $E^{\text{comb}}$ will have low energy precisely at motion planning paths $q_{1:T}$ which satisfy both constraints, with sampling corresponding to optimizing this potential function. Hence, by iteratively sampling from the composite potential function, we can obtain motion plans that satisfy both constraints. Please see our 
+      <a href="#comp-results-title" class="citation-link">compositional results</a> below.
 
       <!-- (see Appendix \ref{sect:app_cond_indep}) -->
       <!-- This composite potential is the ground truth potential combining constraints if the constraints are independent, which is satisfied if the set of trajectories given constraints are uniformly distributed, and otherwise serves as approximate proxy to optimize multiple constraints. -->
@@ -298,6 +306,7 @@
   </div>
 </section>
 
+<hr>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -318,15 +327,15 @@
           <div class="video-container text-centered">
           
             <!-- <center> -->
-            <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+            <video width="18%" playsinline="" autoplay="" preload="" muted="" loop>
                 <source src="materials/rm2d-per-step/luotest_env6.mp4" type="video/mp4">
             </video>
 
-            <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+            <video width="18%" playsinline="" autoplay="" preload="" muted="" loop>
               <source src="materials/rm2d-per-step/luotest_env10.mp4" type="video/mp4">
             </video>
 
-            <video width="20%" playsinline="" autoplay="" preload="" muted="" loop>
+            <video width="18%" playsinline="" autoplay="" preload="" muted="" loop>
               <source src="materials/rm2d-per-step/luotest_env17.mp4" type="video/mp4">
             </video>
           <!-- </center> -->
@@ -389,7 +398,7 @@
                           <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" class="scaled-image-200"> -->
                           <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" style="width: 10000px" > -->
                           <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" style="transform: scale(2.1); transform-origin: top center;" > -->
-                          <img src="materials/21-concave_compare-v4-icml.png" alt="" width="70%">
+                          <img src="materials/21-concave_compare-v4-icml-website.png" alt="" width="73%">
 
                           <!-- <div class="background-image" > </div> -->
                       <!-- </div> -->
@@ -604,6 +613,7 @@
   </div>
 </section>
 
+<hr>
 
 
 <section class="section">
@@ -611,7 +621,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <!-- <h2 class="title is-4">Compositional Generalization over Increasing Obstacles</h2> -->
-        <h2 class="title is-4">Generalization via Composing Potentials</h2>
+        <h2 class="title is-4" id="comp-results-title">Generalization via Composing Potentials</h2>
 
         <div class="content has-text-justified has-text-centered">
 
@@ -625,7 +635,7 @@
 
         <div class="centered-caption"  width="75%">
           <figure>
-            <img width="75%" src="materials/40-comp_rm2d-3.png" alt="">
+            <img width="75%" src="materials/40-comp_rm2d-3-web.png" alt="">
             <br/>
             <div class="left-caption">
               <b>Compositional Generalization over Increasing Obstacles.</b>
@@ -637,10 +647,11 @@
           </figure>
         </div>
         <br/>
+        <br/>
 
         <div class="centered-caption">
           <figure>
-            <img width="51%" src="materials/43-comp_rm2d-diff-v2.png" alt="">
+            <img width="55%" src="materials/43-comp_rm2d-diff-v2-web.png" alt="">
             <br/>
 
             <div class="left-caption">
@@ -650,11 +661,12 @@
           </figure>
         </div>
         <br/>
+        <br/>
 
 
         <div class="centered-caption">
           <figure>
-            <img width="51%" src="materials/45-comp_rm2d-diff-concave.png" alt="">
+            <img width="55%" src="materials/45-comp_rm2d-diff-concave-web.png" alt="">
             <br/>
             <div class="left-caption">
               <b>Compositional Generalization over Square and Concave Obstacles.</b> 
@@ -662,6 +674,90 @@
               The composite planner is well aware of the geometrical difference between the square and concave obstacles and is able to propose successful and near-optimal motion plans accordingly. 
             </div>
           </figure>
+        </div>
+        <br/>
+        <br/>
+
+
+        <div class="centered-caption">
+          <div class="container bg-3">
+            <div class="row">
+              <div class="video-container" style="gap: 0px">
+
+                <div class="col-20 centered-caption">
+                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                    <source src="materials/comp_dyn/comp_dyn_s6d1_1.mp4" type="video/mp4">
+                  </video>
+                  <!-- Ours -->
+                </div>
+  
+  
+                <div class="col-20 centered-caption">
+                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                    <source src="materials/comp_dyn/comp_dyn_s6d1_2.mp4" type="video/mp4">
+                  </video>
+                  <!-- MπNet -->
+                </div>
+  
+                <!-- Problem 2 -->
+                <div class="col-20 centered-caption">
+                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                    <source src="materials/comp_dyn/comp_dyn_s3d1_1.mp4" type="video/mp4">
+                  </video>
+                  <!-- Ours -->
+                </div>
+  
+  
+                <div class="col-20 centered-caption">
+                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                    <source src="materials/comp_dyn/comp_dyn_s3d1_2.mp4" type="video/mp4">
+                  </video>
+                  <!-- MπNet -->
+                </div>
+              <!-- </div> -->
+              </div>
+  
+            </div>
+          </div>
+
+          <div class="container bg-3">
+            <div class="row" style="margin-top: -15px;">
+
+              <div style="display: flex; justify-content: center; align-items: center; white-space: nowrap; width: 100%;">
+                
+                <div class="col-40 centered-caption" style="font-size: 13pt;">
+                  6 static + 1 dynamic
+                </div>
+
+                <div class="col-40 centered-caption" style="font-size: 13pt;">
+                  3 static + 1 dynamic
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="left-caption">
+            <b>Compositional Generalization over Static and Dynamics Obstacles. </b> 
+            The current position of the agent is shown in the pink asterisk. The gray line indicates the moving trajectory of the dynamic obstacle (the large blue block). 
+            Note that our method is only trained on environments that purely consist of static obstacles or dynamic obstacles. For example, for the left two videos, we compose a model trained on 6 static obstacles and a model trained on 1 dynamic obstacle and evaluate the model on environments with both static and dynamic obstacles. 
+            The composite planner is able to generate feasible motion plans, where
+            <!-- avoid both the static obstacles and dynamic obstacle.  -->
+            the resulting trajectories do not directly go straight to the targets but detour and wait to avoid the moving obstacle.
+            
+          </div>
+
+          <!-- <figure>
+            <img width="55%" src="materials/45-comp_rm2d-diff-concave-web.png" alt="">
+            <br/>
+            <div class="left-caption">
+              <b>Compositional Generalization over Static and Dynamics Obstacles.</b> 
+              
+            </div>
+          </figure> -->
+
         </div>
 
         
@@ -766,16 +862,14 @@
 
 <!-- Sohl-Dickstein, J., Weiss, E., Maheswaranathan, N., and Ganguli, S. Deep unsupervised learning using nonequilibrium thermodynamics. In International Conference on Machine Learning, pp. 2256–2265. PMLR, 2015. -->
 
-
+<!-- 
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <!-- <h2 class="title is-4">Compositional Generalization over Increasing Obstacles</h2> -->
         <h2 class="title is-4">References</h2>
 
         <ol>
-          <!-- <li id="ref1" class="reference">Smith et al., <i>Effects of Something Interesting</i>, Journal of Important Studies, 2023.</li> -->
           <li id="ref1" class="reference">
             LeCun, Y., Chopra, S., Hadsell, R., Ranzato, M., and Huang, F. A tutorial on energy-based learning. Predicting structured data, 1(0), 2006.
           </li>
@@ -806,7 +900,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
