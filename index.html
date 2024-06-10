@@ -122,8 +122,9 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <span class="link-block">
-                <!-- TODO: -->
+
+              <!-- TODO: Arxiv-->
+              <!-- <span class="link-block">
                 <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -131,7 +132,8 @@
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
+              </span> -->
+
               <!-- Code Link. -->
               <span class="link-block">
                 <!-- TODO: -->
@@ -178,18 +180,14 @@
         <source src="materials/unsupervised_discovery_teaser.m4v"
                 type="video/mp4">
       </video> -->
-      <!-- <center> -->
       <figure>
-        <!-- <a> -->
-            <img width="70%" src="materials/0-teaser-icml-website-v2.png">
-        <!-- </a> -->
+          <img width="70%" src="materials/0-teaser-icml-website-v2.png">
         <p class="caption">
             <b>Illustrative Example of Composing Diffusion Energy Potentials.</b>
             Our approach learns different potential functions over motion planning trajectories $q_{1:N}$ (orange dashed lines). Different potentials can be combined and optimized to construct new motion plans that avoid obstacles encoded in both potential functions.
 
         </p>
     </figure>
-    <!-- </center> -->
 
     </div>
   </div>
@@ -341,7 +339,8 @@
           <!-- </center> -->
           <p>
             <!-- \textbf{Trajectory Denoising Process.}  -->
-            Motion trajectories are randomly initialized from Gaussian in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible trajectory can be obtained at timestep $S = 0$.
+            <b>Trajectory Denoising Process on Maze2D.</b>
+            Motion trajectories are randomly initialized from Gaussian distribution in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible collision-free trajectory can be obtained at timestep $S = 0$.
             <!-- \eqref{eqn:diffusion_opt} -->
           </p>
 
@@ -380,15 +379,6 @@
                         <!-- </div> -->
 
                   <!-- <div style="height: 500px"> -->
-                    <p>
-                      <!-- <b>Qualitative Performance on Environments with Concave Obstacles.</b> -->
-                      The green star indicates the start pose and the red star indicates the goal pose.
-                      RMP tends to stuck in local minima and fails to reach the goals; 
-                      RRT* is slow in speed and may reach the planning time limit in some difficult problems; 
-                      trajectories by MPNet may occasionally go through obstacles in the environments;
-                      our method is able to generate smooth and low-cost trajectories without collision while being up to 10 times faster than BIT*.
-                    </p>
-                    <br/>
                     <div class="centered-container text-centered">
                     <!-- <center> -->
                       <!-- <div width="100%" class="figure centered-container" style="height: 600px"> -->
@@ -405,6 +395,13 @@
                     <!-- </center> -->
                     <!-- <br/> -->
                   </div>
+                  <br/>
+                  <b> Qualitative Comparison of Motion Plans on Maze2D with Concave Obstacles.</b> 
+                  The green star indicates the start pose and the red star indicates the goal pose.
+                  RMP tends to stuck in local minima and fails to reach the goals; 
+                  RRT* is slow in speed and may reach the planning time limit in some difficult problems; 
+                  trajectories by MPNet may occasionally go through obstacles in the environments;
+                  our method is able to generate smooth and low-cost trajectories without collision while being up to 10 times faster than BIT*.
                   <!-- <div class="caption"> -->
                   <!-- </div> -->
 
@@ -438,11 +435,9 @@
         <h2 class="title is-4">Motion Plans on KUKA</h2>
 
         <div class="content has-text-justified has-text-centered">
-          <p>
-            Motion Plans by our diffusion potential planner and MπNet.
-            The large green/pink ball indicates the start/goal state. Our method in the left column generates smooth and near-optimal trajectories, the trajectories of M$\pi$Net might choose a longer route, get stuck in some local regions, or fail to pass through the narrow passage and keep hovering near the start state.
-
-          </p>
+          <!-- <p> -->
+           
+          <!-- </p> -->
         </div>
 
         <!-- <div class="container bg-3">
@@ -604,6 +599,10 @@
 
           </div>
         </div>
+        
+        <b> Qualitative Comparison of Motion Plans on KUKA.</b> 
+        We present motion plans by our diffusion potential planner and <a href="https://mpinets.github.io/" class="citation-link">M$\pi$Net</a>.
+        The large green/pink ball indicates the start/goal state. Our method in the left column generates smooth and near-optimal trajectories, while the trajectories of M$\pi$Net might choose a longer route, get stuck in some local regions, fail to pass through some narrow passages, or keep hovering near the start state.
 
 
 
@@ -612,6 +611,63 @@
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- <h2 class="title is-4"> Flexible Trajectory Morphology</h2> -->
+        <h2 class="title is-4"> Diverse Motion Plan Morphology</h2>
+
+
+        <div class="container bg-3">
+          <div class="row centered-caption">
+            
+            <!-- TODO: Add More, these two videos start sec = 1, while others = 2. -->
+            <div class="video-container" style="gap: 0px">
+              
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/pbd-6-600-morp1.mp4" type="video/mp4">
+                </video>
+                Trajectory 1
+              </div>
+
+
+              <div class="col-sm-3 centered-caption">
+                <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                  <source src="materials/kuka7d/pbd-6-600-morp2.mp4" type="video/mp4">
+                </video>
+                Trajectory 2
+              </div>
+
+            </div>
+            <div class="left-caption">
+            <!-- <b>Diverse Motion Plan Morphology.</b> -->
+            <b>Qualitative Visualizations of Different Trajectory Morphology.</b>
+            Our method can generate trajectories with various morphological shapes. The large green/pink ball indicates the location of the end effector of the start/goal state. Trajectory 1 and Trajectory 2 are generated under the same constraints (e.g., start state, goal state, obstacles locations) but with different starting noise, resulting in different route selection. Trajectory 1 routes through the central narrow passage between the two purple blocks and arrives the pink ball from above. Trajectory 2 avoids the obstacles by going under the blocks and finally arrives the same goal state from below.
+            </div>
+            
+          </div>
+        </div>
+
+        
+
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
 <hr>
 
@@ -767,6 +823,9 @@
   </div>
 </section>
 
+<hr>
+
+<!-- TODO: add motion plans of real world datasets -->
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content column is-full-width ">
@@ -786,7 +845,6 @@
 </section>
 
 
-<!-- TODO: bring back -->
 
 <section class="section">
         <div class="container is-max-desktop">
