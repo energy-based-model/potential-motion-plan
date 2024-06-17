@@ -377,20 +377,20 @@
           <p>
             <!-- \textbf{Trajectory Denoising Process.}  -->
             <b>Trajectory Denoising Process on Maze2D.</b>
-            Motion trajectories are randomly initialized from Gaussian distribution in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible collision-free trajectory can be obtained at timestep $S = 0$.
+            Motion trajectories are randomly initialized from Gaussian distribution in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible collision-free trajectory can be obtained at timestep $S = 0$. 
+            We use <a href="https://arxiv.org/abs/2010.02502" class="citation-link">DDIM</a> to accelerate sampling speed.
             <!-- \eqref{eqn:diffusion_opt} -->
           </p>
 
           </div>
         
         
-             <br/>
       </div>
     </div>
   </div>
 </section>
 
-
+<hr>
 
 
 
@@ -868,15 +868,13 @@
   <div class="container is-max-desktop content column is-full-width ">
     <!-- TODO: -->
     <h2 class="title is-4">BibTeX</h2>
-    <pre><code> Coming Soon.
-      <!-- @InProceedings{Liu_2023_ICCV,
-    author    = {Liu, Nan and Du, Yilun and Li, Shuang and Tenenbaum, Joshua B. and Torralba, Antonio},
-    title     = {Unsupervised Compositional Concepts Discovery with Text-to-Image Generative Models},
-    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-    month     = {October},
-    year      = {2023},
-    pages     = {2085-2095}
-} -->
+    <pre><code> @inproceedings{
+  luo2024potential,
+  title={Potential Based Diffusion Motion Planning},
+  author={Yunhao Luo and Chen Sun and Joshua B. Tenenbaum and Yilun Du},
+  booktitle={Forty-first International Conference on Machine Learning},
+  year={2024},
+  }
 </code></pre>
   </div>
 </section>
