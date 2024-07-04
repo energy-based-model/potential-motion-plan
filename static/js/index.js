@@ -29,50 +29,30 @@ $(document).ready(function() {
 
     });
 
-    var options = {
-			slidesToScroll: 1,
-			slidesToShow: 3,
-			loop: true,
-			infinite: true,
-			autoplay: false,
-			autoplaySpeed: 3000,
-    }
+    //// remove useless code of initializing the bulma carousel.
+    // var options = {
+		// 	slidesToScroll: 1,
+		// 	slidesToShow: 3.3,
+		// 	loop: true,
+		// 	infinite: true,
+		// 	autoplay: false,
+		// 	autoplaySpeed: 3000,
+    // }
 
-		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
 
-    // Loop on each carousel initialized
-    for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
-    }
-
-    // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
-    if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
-    }
-
-    /*var player = document.getElementById('interpolation-video');
-    player.addEventListener('loadedmetadata', function() {
-      $('#interpolation-slider').on('input', function(event) {
-        console.log(this.value, player.duration);
-        player.currentTime = player.duration / 100 * this.value;
-      })
-    }, false);*/
-    preloadInterpolationImages();
-
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
-    });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
-
-    bulmaSlider.attach();
+    
 
 })
+
+
+// switch video in multiple morphology
+function update_rm2d_comp_multiH() {
+  var horizon = document.getElementById("rm2d-comp-multi-h-1").value;
+  // var inst = document.getElementById("single-menu-instances-single-task-real").value;
+  // console.log("gpt", task, inst)
+
+  var video = document.getElementById("rm2d-comp-multi-h-1-video");
+  video.src = "./materials/rm2d-multi-h/" + "env60_h" + horizon + ".mp4";
+  // video.playbackRate = 2.0;
+  video.play();
+}
