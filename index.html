@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description"
@@ -23,8 +23,8 @@
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-carousel.min.css"> -->
+  <!-- <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -34,13 +34,28 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script> -->
+  <!-- <script src="./static/js/bulma-slider.min.js"></script> -->
   <script src="./static/js/index.js"></script>
   <script src="load-mathjax.js" async></script>
+
+  <link rel="stylesheet" href="./static/css/splide.min.css">
+  <script src="./static/js/splide.min.js"></script>
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"> -->
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css"> -->
+
 </head>
+
 <body>
 
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script> -->
 <!-- Navigation Bar -->
 <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
@@ -86,7 +101,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Potential Based Diffusion Motion Planning</h1>
-            <!-- <h2 class="title is-size-2">ICCV 2023</h2> -->
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://devinluo27.github.io/">Yunhao Luo</a><sup>1</sup>,
@@ -100,7 +115,6 @@
             <span class="author-block">
               <a href="https://yilundu.github.io/">Yilun Du</a><sup>2</sup>
             </span>
-            
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -166,7 +180,6 @@
           <div class="video-container text-centered">
             <video width="100%" playsinline="" autoplay="" preload="" muted="" controls>
                 <source src="materials/teaser-video-9.m4v" type="video/mp4">
-                <!-- <source src="materials/Untitled-9-good.m4v" type="video/mp4"> -->
             </video>
           <p>
             <!-- via Composing Potentials -->
@@ -395,75 +408,270 @@
 
 
 
+
+<!-- ================================= -->
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-4">Motion Plans on Concave Obstacles</h2>
 
-        <!-- <div class="content has-text-justified has-text-centered">
-          <p>Our method can decompose the kitchen scenes into kitchen range (i.e., stove and microwave), kitchen island, and lighting effects.
-                    <b>Note that we name each concept based on attention responses for easy visualization.</b> <u>Hover to image to visualize attention heat maps.</u>
-                </p>
-        </div> -->
+        <section class="hero is-light is-small" style="margin: 0px; padding: 0px">
+          <div class="container is-max-desktop"  style="margin: 0px;  padding: 0px">
+            <div class="hero-body"  style="margin: 0px;  padding-bottom: 10px; padding-top: 10px">
 
-        <!-- <h3 class="title is-6 has-text-centered">Silver</h3> -->
-            <!-- <div class="container bg-3"> -->
-                <!-- <div class="row"> -->
-                    <!-- <div class="col-sm-2 text-center"> -->
-                        <!-- <div class="figure"> -->
-                            <!-- <img class="Sirv image-main img-fluid" src="materials/21-concave_compare-v4-icml.png" alt=""> -->
-                        <!-- </div> -->
+              <div class="container is-max-desktop" style="overflow: hidden; margin: 0px">
 
-                  <!-- <div style="height: 500px"> -->
-                    <div class="centered-container text-centered">
-                    <!-- <center> -->
-                      <!-- <div width="100%" class="figure centered-container" style="height: 600px"> -->
-                      <!-- <div width="100%" class="centered-container"> -->
-                        <!-- style="width:200%" -->
-                          <!-- width="100%"  -->
-                          <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" class="scaled-image-200"> -->
-                          <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" style="width: 10000px" > -->
-                          <!-- <img src="materials/21-concave_compare-v4-icml.png" alt="" style="transform: scale(2.1); transform-origin: top center;" > -->
-                          <img src="materials/21-concave_compare-v4-icml-website.png" alt="" width="73%">
+                <div id="splide-rm2d-cc-base" class="splide">
+                  <div class="splide__track">
+                      <ul class="splide__list">
 
-                          <!-- <div class="background-image" > </div> -->
-                      <!-- </div> -->
-                    <!-- </center> -->
-                    <!-- <br/> -->
+                        <li class="splide__slide splide_rm2d_cc">
+
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(a)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+
+                              <div>
+                                <img src="materials/rm2d-concave/env4/rmp.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RMP
+                                </div>
+                              </div>
+
+                              <div>
+                                <img src="materials/rm2d-concave/env4/rrt.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RRT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env4/bit.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  BIT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env4/mpnet.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  MPNet
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env4/ours.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  Ours
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="splide__slide splide_kuka">
+
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(b)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+
+                              <div>
+                                <img src="materials/rm2d-concave/env17/rmp.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RMP
+                                </div>
+                              </div>
+
+                              <div>
+                                <img src="materials/rm2d-concave/env17/rrt.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RRT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env17/bit.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  BIT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env17/mpnet.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  MPNet
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env17/ours.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  Ours
+                                </div>
+                              </div>
+                             
+
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="splide__slide splide_kuka">
+
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(c)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+
+                              <div>
+                                <img src="materials/rm2d-concave/env66/rmp.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RMP
+                                </div>
+                              </div>
+
+                              <div>
+                                <img src="materials/rm2d-concave/env66/rrt.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RRT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env66/bit.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  BIT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env66/mpnet.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  MPNet
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env66/ours.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  Ours
+                                </div>
+                              </div>
+                              
+
+
+                            </div>
+                          </div>
+
+                        </li>
+
+                        <li class="splide__slide splide_kuka">
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(d)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+
+                              <div>
+                                <img src="materials/rm2d-concave/env97/rmp.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RMP
+                                </div>
+                              </div>
+
+                              <div>
+                                <img src="materials/rm2d-concave/env97/rrt.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  RRT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env97/bit.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  BIT*
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env97/mpnet.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  MPNet
+                                </div>
+                              </div>
+
+
+                              <div>
+                                <img src="materials/rm2d-concave/env97/ours.png" alt="Image 1">
+                                <div class="splide_img_caption_18">
+                                  Ours
+                                </div>
+                              </div>
+                              
+
+                            </div>
+                          </div>
+                        </li>
+
+                        <!-- <li class="splide__slide splide_kuka">
+                          <div>
+                            <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                              <source src="materials/kuka7d/pbd-2-600.mp4" type="video/mp4">
+                            </video>
+                            <p class="splide_kuka_caption">Ours</p>
+                          </div>
+
+                          <div class="splide_kuka_space"> </div>
+
+                          <div>
+                            <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                              <source src="materials/kuka7d/mpo-2-600.mp4" type="video/mp4">
+                            </video>
+
+                            <p class="splide_kuka_caption">MπNet</p>
+                          </div>
+                        </li> -->
+
+                      </ul>
                   </div>
-                  <br/>
-                  <b> Qualitative Comparison of Motion Plans on Maze2D with Concave Obstacles.</b> 
-                  The green star indicates the start pose and the red star indicates the goal pose.
-                  RMP tends to stuck in local minima and fails to reach the goals; 
-                  RRT* is slow in speed and may reach the planning time limit in some difficult problems; 
-                  trajectories by MPNet may occasionally go through obstacles in the environments;
-                  our method is able to generate smooth and low-cost trajectories without collision while being up to 10 times faster than BIT*.
-                  <!-- <div class="caption"> -->
-                  <!-- </div> -->
-
-                    
-                  <!-- </div> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-            <!-- </div> -->
-
-        
-        <!-- <h3 class="title is-6 has-text-centered">Silver</h3>
-            <div class="container bg-3">
-                <div class="row">
-                    <div class="col-sm-2 text-center">
-                        <div class="figure">
-                            <img class="Sirv image-main img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_6.png" alt="">
-                            <img class="Sirv image-hover img-fluid" src="materials/decomposition/ADE20K_decomposition/t5_6_attn.png" alt="">
-                        </div>
-                    </div>
                 </div>
-            </div> -->
+              </div>
+            </div>
+          </div>  
+        </section>
+
+
+        <br/>
+        <b> Qualitative Comparison of Motion Plans on Maze2D with Concave Obstacles.</b> 
+        The green star indicates the start pose and the red star indicates the goal pose.
+        RMP tends to stuck in local minima and fails to reach the goals; 
+        RRT* is slow in speed and may reach the planning time limit in some difficult problems; 
+        trajectories by MPNet may occasionally go through obstacles in the environments;
+        our method is able to generate smooth and low-cost trajectories without collision while being up to 10 times faster than BIT*.
+        
       </div>
     </div>
   </div>
 </section>
+
+
+
+
+
+
+<!-- ================================================== -->
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -471,178 +679,146 @@
       <div class="column is-full-width">
         <h2 class="title is-4">Motion Plans on KUKA</h2>
 
-        <div class="content has-text-justified has-text-centered">
-          <!-- <p> -->
-           
-          <!-- </p> -->
-        </div>
+        <section class="hero is-light is-small" style="margin: 0px; padding: 0px">
+          <div class="container is-max-desktop"  style="margin: 0px;  padding: 0px">
+            <div class="hero-body"  style="margin: 0px;  padding-bottom: 10px; padding-top: 10px">
 
-        <!-- <div class="container bg-3">
-          <div class="row">
-            <div class="video-container text-centered">
+              <div class="container is-max-desktop" style="overflow: hidden; margin: 0px">
 
-              <div class="col-lg-4 centered-caption">
-                <figure>
-                  <img src="materials/kuka7d/pbd-1-600.gif" alt="">
-                  <!-- <figcaption class="text-centered"> asd </figcaption> -- >
-                  <!-- <center-caption class="has-text-centered"> asd </center-caption> -- >
-                  <!-- <center-caption class="centered"> asd </center-caption> -- >
-                  <!-- <center-caption> asd </center-caption> -- >
-                  <!-- <div class="centered-caption">Ours</div> -- >
-                  Ours
-                  <!-- <div class="text-centered">asd</div> -- >
-                </figure>
+                <div id="splide-kuka-base" class="splide">
+                  <div class="splide__track">
+                      <ul class="splide__list">
 
-                <!-- <div class="caption">Ours</div> -- >
-                <!-- <caption>asd</caption> -- >
-              </div>
+                        <li class="splide__slide splide_kuka">
 
-              <div class="col-lg-4 centered-caption">
-                <img src="materials/kuka7d/mpo-1-600.gif" alt="">
-                  MπNet
-              </div>
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(a)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/pbd-1-600.mp4" type="video/mp4">
+                                </video>
+                                <p class="splide_kuka_caption">Ours</p>
+                              </div>
+
+                              <div class="splide_kuka_space"> </div>
+
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/mpo-1-600.mp4" type="video/mp4">
+                                </video>
             
+                                <p class="splide_kuka_caption">MπNet</p>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="splide__slide splide_kuka">
+
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(b)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/pbd-2-600.mp4" type="video/mp4">
+                                </video>
+                                <p class="splide_kuka_caption">Ours</p>
+                              </div>
+
+                              <div class="splide_kuka_space"> </div>
+
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/mpo-2-600.mp4" type="video/mp4">
+                                </video>
+            
+                                <p class="splide_kuka_caption">MπNet</p>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="splide__slide splide_kuka">
+
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(c)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/pbd-3-600.mp4" type="video/mp4">
+                                </video>
+                                <p class="splide_kuka_caption">Ours</p>
+                              </div>
+
+                              <div class="splide_kuka_space"> </div>
+
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/mpo-3-600.mp4" type="video/mp4">
+                                </video>
+            
+                                <p class="splide_kuka_caption">MπNet</p>
+                              </div>
+                            </div>
+                          </div>
+
+                        </li>
+
+                        <li class="splide__slide splide_kuka">
+                          <div style="text-align: center; margin-top:0px">
+                            <p class="splide_kuka_prob_id">(d)</p>
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/pbd-4-600.mp4" type="video/mp4">
+                                </video>
+                                <p class="splide_kuka_caption">Ours</p>
+                              </div>
+
+                              <div class="splide_kuka_space"> </div>
+
+                              <div>
+                                <video playsinline="" autoplay="" muted="" loop controls>
+                                  <source src="materials/kuka7d/mpo-4-600.mp4" type="video/mp4">
+                                </video>
+
+                                <p class="splide_kuka_caption">MπNet</p>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+
+                        <!-- <li class="splide__slide splide_kuka">
+                          <div>
+                            <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                              <source src="materials/kuka7d/pbd-2-600.mp4" type="video/mp4">
+                            </video>
+                            <p class="splide_kuka_caption">Ours</p>
+                          </div>
+
+                          <div class="splide_kuka_space"> </div>
+
+                          <div>
+                            <video playsinline="" autoplay="" preload="" muted="" loop controls>
+                              <source src="materials/kuka7d/mpo-2-600.mp4" type="video/mp4">
+                            </video>
+
+                            <p class="splide_kuka_caption">MπNet</p>
+                          </div>
+                        </li> -->
+
+                      </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div> -->
-
-
-
-
-        <!-- <br/> -->
-
-        <!-- Two rows layout -->
-        <!-- <div class="container bg-3">
-          <div class="row">
-
-            <div class="video-container">
-              <div class="col-md-4 centered-caption">
-                <figure>
-                  <img src="materials/kuka7d/pbd-2-600.gif" alt="">
-                  Ours
-                </figure>
-              </div>
-
-              <div class="col-lg-4 centered-caption">
-                <img src="materials/kuka7d/mpo-2-600.gif" alt="">
-                  MπNet
-              </div>
-            </div>
-
-          </div>
-        </div> -->
-
-        <!-- NEW June 6, one row -->
-        <div class="container bg-3">
-          <div class="row">
-            <div class="col-sm-6 centered-caption"  style="font-size: 16pt;">
-              (a)
-            </div>
-            <div class="col-sm-6 centered-caption" style="font-size: 16pt;">
-              (b)
-            </div>
-          </div>
-        </div>
-          
-        <div class="container bg-3">
-          <div class="row">
-
-            <!-- <div class="video-container"> -->
-            <!-- Problem 1 -->
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/pbd-1-600.mp4" type="video/mp4">
-                </video>
-                Ours
-              </div>
-
-
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/mpo-1-600.mp4" type="video/mp4">
-                </video>
-                MπNet
-              </div>
-
-              <!-- Problem 2 -->
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/pbd-2-600.mp4" type="video/mp4">
-                </video>
-                Ours
-              </div>
-
-
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/mpo-2-600.mp4" type="video/mp4">
-                </video>
-                MπNet
-              </div>
-            <!-- </div> -->
-
-          </div>
-        </div>
-        <br/>
-
-
-        <div class="container bg-3">
-          <div class="row">
-            <div class="col-sm-6 centered-caption"  style="font-size: 16pt;">
-              (c)
-            </div>
-            <div class="col-sm-6 centered-caption" style="font-size: 16pt;">
-              (d)
-            </div>
-          </div>
-        </div>
-          
-        <div class="container bg-3">
-          <div class="row">
-
-            <!-- <div class="video-container"> -->
-            <!-- Problem 1 -->
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/pbd-3-600.mp4" type="video/mp4">
-                </video>
-                Ours
-              </div>
-
-
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/mpo-3-600.mp4" type="video/mp4">
-                </video>
-                MπNet
-              </div>
-
-              <!-- Problem 2 -->
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/pbd-4-600.mp4" type="video/mp4">
-                </video>
-                Ours
-              </div>
-
-
-              <div class="col-sm-3 centered-caption">
-                <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                  <source src="materials/kuka7d/mpo-4-600.mp4" type="video/mp4">
-                </video>
-                MπNet
-              </div>
-            <!-- </div> -->
-
-          </div>
-        </div>
+          </div>  
+        </section>
         
         <b> Qualitative Comparison of Motion Plans on KUKA.</b> 
-        We present motion plans by our diffusion potential planner and <a href="https://mpinets.github.io/" class="citation-link">M$\pi$Net</a>.
-        The large green/pink ball indicates the start/goal state. Our method in the left column generates smooth and near-optimal trajectories, while the trajectories of M$\pi$Net might choose a longer route, get stuck in some local regions, fail to pass through some narrow passages, or keep hovering near the start state.
-
-
-
+        We present motion plans by our diffusion potential planner and <a href="https://mpinets.github.io/" class="citation-link">MπNet</a>.
+        The large green/pink ball indicates the start/goal state. Our method in the left column generates smooth and near-optimal trajectories, while the trajectories of MπNet might choose a longer route, get stuck in some local regions, fail to pass through some narrow passages, or keep hovering near the start state.
         
       </div>
     </div>
@@ -653,7 +829,7 @@
 
 
 
-
+<hr>
 
 
 <section class="section">
@@ -670,15 +846,17 @@
             <!-- TODO: Add More, these two videos start sec = 1, while others = 2. -->
             <div class="video-container" style="gap: 0px">
               
-              <div class="col-sm-3 centered-caption">
+              <div class="col-sm-3 centered-caption" style="min-width: 235px;">
                 <video playsinline="" autoplay="" preload="" muted="" loop controls>
                   <source src="materials/kuka7d/pbd-6-600-morp1.mp4" type="video/mp4">
                 </video>
                 Trajectory 1
               </div>
 
+              <!-- &nbsp; &nbsp; &nbsp; &nbsp;  -->
 
-              <div class="col-sm-3 centered-caption">
+
+              <div class="col-sm-3 centered-caption" style="min-width: 235px;">
                 <video playsinline="" autoplay="" preload="" muted="" loop controls>
                   <source src="materials/kuka7d/pbd-6-600-morp2.mp4" type="video/mp4">
                 </video>
@@ -687,9 +865,59 @@
 
             </div>
             <div class="left-caption">
-            <!-- <b>Diverse Motion Plan Morphology.</b> -->
-            <b>Qualitative Visualizations of Different Trajectory Morphology.</b>
-            Our method can generate trajectories with various morphological shapes. The large green/pink ball indicates the location of the end effector of the start/goal state. Trajectory 1 and Trajectory 2 are generated under the same constraints (e.g., start state, goal state, obstacles locations) but with different starting noise, resulting in different route selection. Trajectory 1 routes through the central narrow passage between the two purple blocks and arrives the pink ball from above. Trajectory 2 avoids the obstacles by going under the blocks and finally arrives the same goal state from below.
+            <!-- <b>Qualitative Visualizations of Different Trajectory Morphology.</b>
+            Our method can generate trajectories with various morphological shapes. The large green/pink ball indicates the location of the end effector of the start/goal state. Trajectory 1 and Trajectory 2 are generated under the same constraints (e.g., start state, goal state, obstacles locations) but with different starting noise, resulting in different route selection. Trajectory 1 routes through the central narrow passage between the two purple blocks and arrives the pink ball from above. Trajectory 2 avoids the obstacles by going under the blocks and finally arrives the same goal state from below. -->
+            <b>Stochastic Denoising Process Enables Diverse Motion Path Morphology.</b> 
+            Trajectory 1 and Trajectory 2 are generated under the same constraints (e.g., start state, goal state, obstacles locations) and planning horizon, but with different denoising random seeds.
+            </div>
+            
+          </div>
+        </div>
+
+
+        <div class="container bg-3">
+          <div class="row centered-caption">
+            <div class="video-container" style="gap: 0px">
+              <!-- <div class="col-sm-3 centered-caption" > -->
+                <!-- Maze2D 6+6 Obstacles -->
+                <!-- <br/> -->
+                <!-- <img src="./materials/rm2d-multi-h/comp_env60_base.png" alt="" width="100%" style="margin-top: 5px;"> -->
+                <!-- <img src="./materials/rm2d-multi-h/comp_env60_base.png" alt="" width="100%"> -->
+                <div class="multi_hor_rm2d_item">
+                  <p class="multi_hor_rm2d_caption">Maze2D 6+6 Obstacles</p>
+                  <!-- margin-top: 5px; -->
+                  <img src="./materials/rm2d-multi-h/comp_env60_base.png" alt="" style="max-width: 235px">
+                </div>
+              <!-- </div> -->
+
+              <!-- &nbsp; &nbsp; &nbsp; &nbsp; -->
+              <!-- style="min-width: 100px;" -->
+              <!-- <div class="splide_kuka_space"></div> -->
+
+              <!-- <div class="col-sm-3 centered-caption"> -->
+                <div class="multi_hor_rm2d_item">
+                  <!-- Horizon -->
+                  <div class="multi_hor_rm2d_caption">Horizon
+                    <div class="select is-small">     
+                      <select id="rm2d-comp-multi-h-1" onchange="update_rm2d_comp_multiH()">
+                        <option value="60">60</option>
+                        <option value="64">64</option>        
+                        <option value="68" selected="selected">68</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <br/> -->
+                  <!-- width:100%;  -->
+                  <video id="rm2d-comp-multi-h-1-video" muted autoplay muted style="max-width: 235px">
+                    <source src="materials/rm2d-multi-h/env60_h68.mp4" type="video/mp4">
+                  </video>
+                  <!-- </div> -->
+                </div>
+
+            <div class="left-caption">
+              <b>Different Planning Horizons Enable Diverse Motion Path Morphology.</b> 
+              Left: Motion planning problem setup. The green/pink star indicates the start/goal state. 
+              Right: Various motion path selection according to the planning horizon.
             </div>
             
           </div>
@@ -709,6 +937,7 @@
 <hr>
 
 
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -724,23 +953,133 @@
 
 
         </div>
-        <!-- <img src="materials/40-comp_rm2d-3.png" width="75%" alt="Composition."/> -->
 
-        <div class="centered-caption"  width="75%">
-          <figure>
-            <img width="75%" src="materials/40-comp_rm2d-3-web.png" alt="">
-            <br/>
-            <div class="left-caption">
-              <b>Compositional Generalization over Increasing Obstacles.</b>
-              The green/pink star indicates the start/goal state. Our planner is
-              trained with a dataset with only 6 obstacles and can generalize to scenarios with more obstacles by directly composing potentials in test
-              time (without any re-training). 
-              Though trained on environments with fewer obstacles, the generated trajectories can still reach the goals with near optimal paths and various morphology shapes through composing potentials.
+
+  <!-- ================================= -->
+  <section class="hero is-light is-small" style="margin: 0px; padding: 0px">
+    <div class="container is-max-desktop"  style="margin: 0px;  padding: 0px">
+        <div class="hero-body"  style="margin: 0px;  padding-bottom: 10px">
+  
+        <div class="container is-max-desktop" style="overflow: hidden; margin: 0px">
+
+          <div id="splide-rm2d-comp-same" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/6-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/7-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6 + 1
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/8-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6 + 2
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/9-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6 + 3
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/10-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6 + 4
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/11-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6 + 5
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="splide__slide splide_rm2d">
+                      <div>
+                        <img src="./materials/rm2d-comp/12-env60.png" alt="Image 1">
+                        <div class="splide_img_caption">
+                          6 + 6
+                        </div>
+                      </div>
+                    </li>
+
+                </ul>
             </div>
-          </figure>
+          </div>
+          <!-- <div class="splide__progress">
+            <div class="splide__progress__bar">
+            </div>
+          </div> -->
         </div>
-        <br/>
-        <br/>
+      </div>
+  
+    </div>  
+  </section>
+  <section>
+    <div class="left-caption">
+      <b>Compositional Generalization over Increasing Obstacles.</b>
+      The green/pink star indicates the start/goal state. Our planner is
+      trained with a dataset with only 6 obstacles and can generalize to scenarios with more obstacles by directly composing potentials in test
+      time (without any re-training). 
+      Though trained on environments with fewer obstacles, the generated trajectories can still reach the goals with near optimal paths and various morphology shapes through composing potentials.
+    </div>
+  </section>
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script> -->
+
+
+
+
+
+
+
+
+
+<!-- =================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =================================== -->
+
+
+
+
 
         <div class="centered-caption">
           <figure>
@@ -1023,6 +1362,8 @@
     </div>
   </div>
 </footer>
+
+<script src="./static/js/last_run.js"></script>
 
 </body>
 </html>
