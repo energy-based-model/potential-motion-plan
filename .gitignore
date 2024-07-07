@@ -2,3 +2,6 @@ materials-ori/**
 luotest**
 .vscode/**
 trash/**
+.DS_Store
+**/.DS_Store
+
