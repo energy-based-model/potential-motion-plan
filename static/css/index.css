@@ -109,7 +109,78 @@ body {
 
 .publication-body img {
 }
+
 /* ------------------------------- */
+/* ------------------------------- */
+
+/* 
+  Make Equation scrollable in smaller screen
+ */
+
+@media (max-width: 600px) {
+  .mjx-rendered mjx-container {
+    overflow-x: scroll;
+    font-size: 80%;
+    padding-bottom: 5px;
+  }
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 3px;
+    height: 3px;  
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+
+  /* .splide__arrows {
+		display: none;
+	}
+  .splide__arrow{
+    background: black;
+    color: green;
+  }
+  .splide__pagination__page{
+    color: #000;
+  } */
+}
+
+.traj_denoise_row video {
+  min-width: 140px;
+}
+
+
+
+/* 
+  For Comp Static Dyn Videos
+ */
+.comp_static_dyn_container {
+  display: flex;   /* Align children (videos) in a row */
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+
+@media (max-width: 600px) {
+  .comp_static_dyn_container {
+    flex-wrap: wrap;
+  }
+}
+
+.comp_static_dyn_group {
+  display: flex;   /* Align children (videos) in a row */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.comp_static_dyn_group video {
+  max-width: 270px;
+  min-width: 140px;
+}
+
+
 /* 
 .splide_div {
   overflow: hidden;
@@ -162,11 +233,37 @@ body {
   width: 200px;
 }
 
+.splide_rm2d_cc_row {
+  display: flex; 
+  justify-content: center; 
+  gap: 10px; 
+  margin-top: 10px;
+}
+
+.splide_rm2d_cc_row div {
+  max-width: 200px;
+}
+
+@media (max-width: 1000px) {
+  .splide_rm2d_cc_row {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .splide_rm2d_cc_row div {
+    max-width: 90px;
+  }
+}
+
+
 .splide_rm2d img {
   /* min-width: 200px; */
   height: auto;
   width: 220px;
   /* height: 240px; */
+  max-width: 100%;
 }
 
 /* .splide_kuka {

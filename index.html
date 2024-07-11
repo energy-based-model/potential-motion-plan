@@ -137,8 +137,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <!-- TODO: -->
-                <a href="./potential_motion_plan.pdf"
+                <a href="https://arxiv.org/pdf/2407.06169"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -147,16 +146,15 @@
                 </a>
               </span>
 
-              <!-- TODO: Arxiv-->
-              <!-- <span class="link-block">
-                <a href=""
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2407.06169"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span> -->
+              </span>
 
               <!-- Code Link. -->
               <span class="link-block">
@@ -251,13 +249,13 @@
                 type="video/mp4">
       </video> -->
       <figure>
-          <img width="70%" src="materials/0-teaser-icml-website-v2.png">
+          <img width="70%" src="materials/0-teaser-icml-website-v2.png" style="min-width: 300px">
         <p class="caption">
             <b>Illustrative Example of Composing Diffusion Energy Potentials.</b>
             Our approach learns different potential functions over motion planning trajectories $q_{1:N}$ (orange dashed lines). Different potentials can be combined and optimized to construct new motion plans that avoid obstacles encoded in both potential functions.
 
         </p>
-    </figure>
+      </figure>
 
     </div>
   </div>
@@ -277,15 +275,17 @@
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
          
-      <!-- <p> -->
+
       <!-- We next discuss how to learn potentials for potential motion planning that enable us to effectively optimize samples. -->
       <b>Learning Potentials for Motion Planning. </b>
       Given a motion plan $q_{1:T}$ from start state $q_{\text{st}}$ to end state $q_{\text{e}}$ and a characterization of the configuration space $C$ ($\textit{i.e.}$ the set of obstacles in the environment), we propose to learn a trajectory-level potential function $U_\theta$ so that
-      <!-- </p>           -->
+
+      <div class="mjx-rendered">
       \begin{equation}
       q_{1:T}^* = \text{arg\,min}_{q_{1:T}} U_\theta(q_{1:T}, q_{\text{st}}, q_{\text{e}}, C),
       \label{eqn:potential_traj}
       \end{equation} 
+      </div>
 
       where $q_{1:T}^*$ is a successful motion plan from $q_{\text{st}}$ to $q_{\text{e}}$. 
       To learn the potential function above, we propose to learn an 
@@ -313,11 +313,13 @@
       <!-- where the gradient of energy function is trained to denoise noise corrupted motion plans $q_{1:T}^*$, -->
       where the gradient of energy function is trained to denoise noise-corrupted motion plans $q_{1:T}^i$ from dataset $D$,
 
+      <div class="mjx-rendered">
       \begin{equation}
       \mathcal{L}_{\text{MSE}}=\|\mathbf{\epsilon} - \nabla_{q_{1:T}} E_\theta(\sqrt{1-\beta_s} q_{1:T}^i +  \sqrt{\beta_s} \mathbf{\epsilon}, s, q_{\text{st}}^i, q_{\text{e}}^i, C^i)\|^2
 
       \label{eqn:train_obj}
       \end{equation}
+      </div>
 
       where $\epsilon$ is sampled from Gaussian noise $\mathcal{N}(0, 1)$,  $s \in\{1,2,...,S\}$ is the denoising diffusion step (we set $S = 100$), and $\beta_s$ is the corresponding Gaussian noise corruption on a motion planning path $q_{1:T}^i$. We refer to $E_\theta$ as the <i>diffusion potential function</i>.
 
@@ -328,11 +330,13 @@
       <b>Optimize and Sample from Diffusion Potential Function.</b>
       To optimize and sample from our diffusion potential function, we initialize a motion path $q_{1:T}^S$ at diffusion step $S$ from Gaussian noise $\mathcal{N}(0, 1)$ and optimize for motion path following the gradient of the energy function $E_{\theta}$. We iteratively refine the motion path $q_{1:T}^s$ across each diffusion step following 
       
+      <div class="mjx-rendered">
       \begin{align}
       & q_{1:T}^{s-1}=q_{1:T}^{s}-\gamma \epsilon + \xi, \quad \xi \sim \mathcal{N} \bigl(0, \sigma^2_s I \bigl), \notag \\
       & \text{where} \: \: \epsilon =  \nabla_{q_{1:T}} E_\theta(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C)
       \label{eqn:diffusion_opt}
       \end{align}
+      </div>
 
       To parameterize the energy function $E_\theta(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C)$, 
       we use <a href="https://arxiv.org/abs/2207.12598" class="citation-link">classifier-free guidance</a>
@@ -351,12 +355,13 @@
       Given two separate diffusion potential functions $E^1_\theta(\cdot)$ and $E^2_\theta(\cdot)$, encoding separate constraints for motion planning, we can likewise form a composite potential function $E^{\text{comb}}(\cdot) = E^1(\cdot) + E^2(\cdot)$ by directly summing the corresponding potentials. 
       To sample from the new diffusion potential function $E^{\text{comb}}$, we can follow 
 
-        
+      <div class="mjx-rendered">
       \begin{align}
           &q_{1:T}^{s-1}=q_{1:T}^{s}-\gamma \epsilon^{\text{comb}}+\xi, \quad \xi \sim \mathcal{N} \bigl(0, \sigma^2_s I \bigl), \label{eqn:diffusion_opt_comb} \\
 
           & \text{where} \: \: \epsilon^{\text{comb}} = \nabla_{q_{1:T}} (E_\theta^{1}(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C_1) + E_\theta^{2}(q_{1:T}, s, q_{\text{st}}, q_{\text{e}}, C_2)). \notag
       \end{align}
+      </div>
 
       This potential function $E^{\text{comb}}$ will have low energy precisely at motion planning paths $q_{1:T}$ which satisfy both constraints, with sampling corresponding to optimizing this potential function. Hence, by iteratively sampling from the composite potential function, we can obtain motion plans that satisfy both constraints. Please see our 
       <a href="#comp-results-title" class="citation-link">compositional results</a> below.
@@ -392,7 +397,7 @@
 
         <!-- <img src="materials/decomposition/imagenet_decomposition.png" -->
              <!-- alt="Object Decomposition."/> -->
-          <div class="video-container text-centered">
+          <div class="video-container text-centered traj_denoise_row">
           
             <!-- <center> -->
             <video width="19%" playsinline="" autoplay="" preload="" muted="" loop>
@@ -406,14 +411,14 @@
             <video width="19%" playsinline="" autoplay="" preload="" muted="" loop>
               <source src="materials/rm2d-per-step/luotest_env17.mp4" type="video/mp4">
             </video>
-          <!-- </center> -->
-          <p>
-            <!-- \textbf{Trajectory Denoising Process.}  -->
-            <b>Trajectory Denoising Process on Maze2D.</b>
-            Motion trajectories are randomly initialized from Gaussian distribution in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible collision-free trajectory can be obtained at timestep $S = 0$. 
-            We use <a href="https://arxiv.org/abs/2010.02502" class="citation-link">DDIM</a> to accelerate sampling speed.
-            <!-- \eqref{eqn:diffusion_opt} -->
-          </p>
+            <!-- </center> -->
+            <p>
+              <!-- \textbf{Trajectory Denoising Process.}  -->
+              <b>Trajectory Denoising Process on Maze2D.</b>
+              Motion trajectories are randomly initialized from Gaussian distribution in timestep $S = 100$. Noises are iteratively removed via the gradient of the energy function. A feasible collision-free trajectory can be obtained at timestep $S = 0$. 
+              We use <a href="https://arxiv.org/abs/2010.02502" class="citation-link">DDIM</a> to accelerate sampling speed.
+              <!-- \eqref{eqn:diffusion_opt} -->
+            </p>
 
           </div>
         
@@ -453,7 +458,7 @@
 
                           <div style="text-align: center; margin-top:0px">
                             <p class="splide_kuka_prob_id">(a)</p>
-                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                            <div class="splide_rm2d_cc_row">
 
                               <div>
                                 <img src="materials/rm2d-concave/env4/rmp.png" alt="Image 1">
@@ -501,7 +506,7 @@
 
                           <div style="text-align: center; margin-top:0px">
                             <p class="splide_kuka_prob_id">(b)</p>
-                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                            <div class="splide_rm2d_cc_row">
 
                               <div>
                                 <img src="materials/rm2d-concave/env17/rmp.png" alt="Image 1">
@@ -550,7 +555,7 @@
 
                           <div style="text-align: center; margin-top:0px">
                             <p class="splide_kuka_prob_id">(c)</p>
-                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                            <div class="splide_rm2d_cc_row">
 
                               <div>
                                 <img src="materials/rm2d-concave/env66/rmp.png" alt="Image 1">
@@ -600,7 +605,7 @@
                         <li class="splide__slide splide_kuka">
                           <div style="text-align: center; margin-top:0px">
                             <p class="splide_kuka_prob_id">(d)</p>
-                            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                            <div class="splide_rm2d_cc_row">
 
                               <div>
                                 <img src="materials/rm2d-concave/env97/rmp.png" alt="Image 1">
@@ -1335,93 +1340,63 @@
 
 
         <!-- ============================================================ -->
+        <!-- ================= Compose Static and Dynamic =============== -->
 
 
 
 
-        <div class="centered-caption">
-          <div class="container bg-3">
-            <div class="row">
-              <div class="video-container" style="gap: 0px">
-
-                <div class="col-20 centered-caption">
-                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                    <source src="materials/comp_dyn/comp_dyn_s6d1_1.mp4" type="video/mp4">
-                  </video>
-                  <!-- Ours -->
-                </div>
-  
-  
-                <div class="col-20 centered-caption">
-                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                    <source src="materials/comp_dyn/comp_dyn_s6d1_2.mp4" type="video/mp4">
-                  </video>
-                  <!-- MπNet -->
-                </div>
-  
-                <!-- Problem 2 -->
-                <div class="col-20 centered-caption">
-                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                    <source src="materials/comp_dyn/comp_dyn_s3d1_1.mp4" type="video/mp4">
-                  </video>
-                  <!-- Ours -->
-                </div>
-  
-  
-                <div class="col-20 centered-caption">
-                  <video playsinline="" autoplay="" preload="" muted="" loop controls>
-                    <source src="materials/comp_dyn/comp_dyn_s3d1_2.mp4" type="video/mp4">
-                  </video>
-                  <!-- MπNet -->
-                </div>
-              <!-- </div> -->
-              </div>
-  
-            </div>
-          </div>
-
-          <div class="container bg-3">
-            <div class="row" style="margin-top: -15px;">
-
-              <div style="display: flex; justify-content: center; align-items: center; white-space: nowrap; width: 100%;">
-                
-                <div class="col-40 centered-caption" style="font-size: 13pt;">
-                  6 static + 1 dynamic
-                </div>
-
-                <div class="col-40 centered-caption" style="font-size: 13pt;">
-                  3 static + 1 dynamic
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="left-caption">
-            <b>Compositional Generalization over Static and Dynamics Obstacles. </b> 
-            The current position of the agent is shown in the pink asterisk. The gray line indicates the moving trajectory of the dynamic obstacle (the large blue block). 
-            Note that our method is only trained on environments that purely consist of static obstacles or dynamic obstacles. For example, for the left two videos, we compose a model trained on 6 static obstacles and a model trained on 1 dynamic obstacle and evaluate the model on environments with both static and dynamic obstacles. 
-            The composite planner is able to generate feasible motion plans, where
-            <!-- avoid both the static obstacles and dynamic obstacle.  -->
-            the resulting trajectories do not directly go straight to the targets but detour and wait to avoid the moving obstacle.
-            
-          </div>
-
-          <!-- <figure>
-            <img width="55%" src="materials/45-comp_rm2d-diff-concave-web.png" alt="">
-            <br/>
-            <div class="left-caption">
-              <b>Compositional Generalization over Static and Dynamics Obstacles.</b> 
-              
-            </div>
-          </figure> -->
-
-        </div>
 
         
-        <br/>
+
+
+        <!-- Newer Version, July 11 -->
+        <!-- video-container -->
+        <!-- text-centered -->
+        <div class="comp_static_dyn_container">
+          <div>
+            <div class="comp_static_dyn_group">
+              <video width="38%" playsinline="" autoplay="" preload="" muted="" loop>
+                  <source src="materials/comp_dyn/comp_dyn_s6d1_1.mp4" type="video/mp4">
+              </video>
+
+              <video width="38%" playsinline="" autoplay="" preload="" muted="" loop>
+                <source src="materials/comp_dyn/comp_dyn_s6d1_2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="centered-caption" style="font-size: 13pt;">
+              6 static + 1 dynamic
+            </div>
+          </div>
+
+
+          <div>
+            <div class="comp_static_dyn_group">
+              <video width="38%" playsinline="" autoplay="" preload="" muted="" loop>
+                  <source src="materials/comp_dyn/comp_dyn_s3d1_1.mp4" type="video/mp4">
+              </video>
+
+              <video width="38%" playsinline="" autoplay="" preload="" muted="" loop>
+                <source src="materials/comp_dyn/comp_dyn_s3d1_2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="centered-caption" style="font-size: 13pt;">
+              3 static + 1 dynamic
+            </div>
+          </div>
+          
+
+        </div>
+        <div class="left-caption">
+          <b>Compositional Generalization over Static and Dynamics Obstacles. </b> 
+          The current position of the agent is shown in the pink asterisk. The gray line indicates the moving trajectory of the dynamic obstacle (the large blue block). 
+          Note that our method is only trained on environments that purely consist of static obstacles or dynamic obstacles. For example, for the left two videos, we compose a model trained on 6 static obstacles and a model trained on 1 dynamic obstacle and evaluate the model on environments with both static and dynamic obstacles. 
+          The composite planner is able to generate feasible motion plans, where
+          <!-- avoid both the static obstacles and dynamic obstacle.  -->
+          the resulting trajectories do not directly go straight to the targets but detour and wait to avoid the moving obstacle.
+          
+        </div>
+
+      
       </div>
     </div>
   </div>
@@ -1526,16 +1501,17 @@
 
 <footer class="footer">
   <div class="container">
+
     <div class="content has-text-centered">
-      <!-- TODO: -->
       <a class="icon-link"
-         href="">
+         href="https://arxiv.org/abs/2407.06169">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/devinluo27/potential-motion-plan-release" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
+
     <div class="columns is-centered">
       <div class="column is-8 has-text-centered">
         <div class="content">

@@ -34,6 +34,11 @@ var splide = new Splide( '#splide-kuka-base', {
   lazyLoad: 'nearby',
   focus    : 0,
   pagination: true,
+  breakpoints: {
+    640: {
+      arrows: false,
+    }
+  },
   // arrow: 1,
   // paginationKeyboard: false,
   
@@ -70,6 +75,11 @@ var splide = new Splide( '#splide-rm2d-cc-base', {
   lazyLoad: 'nearby',
   focus    : 0,
   pagination: true,
+  breakpoints: {
+    640: {
+      arrows: false,
+    }
+  },
   // arrow: 1,
   // paginationKeyboard: false,
   
