@@ -271,6 +271,26 @@ body {
   padding-top: 0px;
 } */
 
+/* ------------------------ */
+
+.kuka_base_row {
+  display: flex; 
+  justify-content: center; 
+  gap: calc(9% + 5px);
+  margin-top: 10px;
+}
+
+.kuka_base_row video {
+  min-width: 150px;
+}
+
+@media (max-width: 600px) {
+  .kuka_base_row {
+    flex-wrap: wrap;
+  }
+}
+
+
 .splide_kuka video {
   /* min-width: 200px; */
   height: auto;
